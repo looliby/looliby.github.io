@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  110
+                  113
                 </span>
               
 
@@ -445,8 +445,9 @@
 原因是 Hexo解析UTF8时出现问题。</p>
 <h4 id="解决方案">解决方案</h4>
 <p>在next文件夹下，寻找 source/js/src/post-detail.js<br>
-找到 <code>var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));</code><br>
-在后面加上</p>
+找到</p>
+<pre class="line-numbers language-none"><code class="language-none">var targetSelector &#x3D; NexT.utils.escapeSelector(this.getAttribute(&#39;href&#39;));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>在后面加上</p>
 <pre class="line-numbers language-none"><code class="language-none">targetSelector &#x3D; decodeURI(this.getAttribute(&#39;href&#39;))
     var offset &#x3D; $(targetSelector).offset().top;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
