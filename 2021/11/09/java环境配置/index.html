@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="java环境配置目的： 学会对JDK版本的切换 运行javafx程序  实验主要硬件软件条件：Window10JDK版本：java11, jdk17 实验内容：运行javafx程序 编辑系统环境变量，添加 JAVA_HOME , JAVA_HOME中填写JDK安装路径    在PATH中新建环境变量    写入 %JAVA_HOME%\bin , 点击确定即可，可点击上移将java路径放置在顶部">
+<meta name="description" content="java环境配置 目的：  学会对JDK版本的切换 运行javafx程序  实验主要硬件软件条件： Window10 JDK版本：java11, jdk17 实验内容： 运行javafx程序  编辑系统环境变量，添加 JAVA_HOME , JAVA_HOME中填写JDK安装路径    在PATH中新建环境变量    写入 %JAVA_HOME%\bin , 点击确定即可，可点击上移将java路径">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java环境配置">
 <meta property="og:url" content="http://example.com/2021/11/09/java%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Looliby&#39;s blog">
-<meta property="og:description" content="java环境配置目的： 学会对JDK版本的切换 运行javafx程序  实验主要硬件软件条件：Window10JDK版本：java11, jdk17 实验内容：运行javafx程序 编辑系统环境变量，添加 JAVA_HOME , JAVA_HOME中填写JDK安装路径    在PATH中新建环境变量    写入 %JAVA_HOME%\bin , 点击确定即可，可点击上移将java路径放置在顶部">
+<meta property="og:description" content="java环境配置 目的：  学会对JDK版本的切换 运行javafx程序  实验主要硬件软件条件： Window10 JDK版本：java11, jdk17 实验内容： 运行javafx程序  编辑系统环境变量，添加 JAVA_HOME , JAVA_HOME中填写JDK安装路径    在PATH中新建环境变量    写入 %JAVA_HOME%\bin , 点击确定即可，可点击上移将java路径">
 <meta property="og:locale">
 <meta property="og:image" content="https://i.bmp.ovh/imgs/2021/10/7223440699328b21.png">
 <meta property="og:image" content="https://i.bmp.ovh/imgs/2021/10/258c1aaa5f4eb799.png">
@@ -113,7 +113,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '',
-    scheme: 'Mist',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -247,9 +247,43 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -362,6 +396,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  336
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
           
 
@@ -378,55 +443,70 @@
       
 
       
-        <h3 id="java环境配置"><a href="#java环境配置" class="headerlink" title="java环境配置"></a>java环境配置</h3><h3 id="目的："><a href="#目的：" class="headerlink" title="目的："></a>目的：</h3><ol>
+        <h3 id="java环境配置">java环境配置</h3>
+<h3 id="目的：">目的：</h3>
+<ol>
 <li>学会对JDK版本的切换</li>
 <li>运行javafx程序</li>
 </ol>
-<h3 id="实验主要硬件软件条件："><a href="#实验主要硬件软件条件：" class="headerlink" title="实验主要硬件软件条件："></a>实验主要硬件软件条件：</h3><p>Window10<br>JDK版本：java11, jdk17</p>
-<h3 id="实验内容："><a href="#实验内容：" class="headerlink" title="实验内容："></a>实验内容：</h3><h4 id="运行javafx程序"><a href="#运行javafx程序" class="headerlink" title="运行javafx程序"></a>运行javafx程序</h4><ol>
+<h3 id="实验主要硬件软件条件：">实验主要硬件软件条件：</h3>
+<p>Window10<br>
+JDK版本：java11, jdk17</p>
+<h3 id="实验内容：">实验内容：</h3>
+<h4 id="运行javafx程序">运行javafx程序</h4>
+<ol>
 <li>编辑系统环境变量，添加 <code>JAVA_HOME</code> , JAVA_HOME中填写JDK安装路径</li>
 </ol>
-<p><img src="https://i.bmp.ovh/imgs/2021/10/7223440699328b21.png"></p>
+<p><img src="https://i.bmp.ovh/imgs/2021/10/7223440699328b21.png" alt=""></p>
 <ol start="2">
 <li>在PATH中新建环境变量</li>
 </ol>
-<p><img src="https://i.bmp.ovh/imgs/2021/10/258c1aaa5f4eb799.png"></p>
-<p><img src="https://i.bmp.ovh/imgs/2021/10/e360c50ae1907010.png"></p>
+<p><img src="https://i.bmp.ovh/imgs/2021/10/258c1aaa5f4eb799.png" alt=""></p>
+<p><img src="https://i.bmp.ovh/imgs/2021/10/e360c50ae1907010.png" alt=""></p>
 <p>写入 <code>%JAVA_HOME%\bin</code> , 点击确定即可，可点击上移将java路径放置在顶部</p>
 <ol start="3">
 <li>新建 <code>PATH_TO_FX</code> , 输入下载的javafx路径</li>
 </ol>
-<p><img src="https://i.bmp.ovh/imgs/2021/10/12de9d8e8154dd0e.png"></p>
-<p><img src="https://i.bmp.ovh/imgs/2021/10/39ee83d83c60d64b.png"></p>
+<p><img src="https://i.bmp.ovh/imgs/2021/10/12de9d8e8154dd0e.png" alt=""></p>
+<p><img src="https://i.bmp.ovh/imgs/2021/10/39ee83d83c60d64b.png" alt=""></p>
 <ol start="4">
 <li>点击确定后，打开命令提示符（win+r , cmd）。</li>
 </ol>
-<p><img src="https://i.bmp.ovh/imgs/2021/10/3140b9a51801f707.png"></p>
+<p><img src="https://i.bmp.ovh/imgs/2021/10/3140b9a51801f707.png" alt=""></p>
 <ol start="5">
-<li><p>进入需要运行java程序的目录</p>
-<p>输入 <code>javac --module-path %PATH_TO_FX%  --add-modules javafx.controls HappyFace.java</code>  生成.class文件<br>然后输入 <code>java --module-path %PATH_TO_FX%  --add-modules javafx.controls HappyFace</code> 执行</p>
-<p><img src="https://i.bmp.ovh/imgs/2021/10/9098fa3afd9fa701.png"></p>
+<li>
+<p>进入需要运行java程序的目录</p>
+<p>输入 <code>javac --module-path %PATH_TO_FX%  --add-modules javafx.controls HappyFace.java</code>  生成.class文件<br>
+然后输入 <code>java --module-path %PATH_TO_FX%  --add-modules javafx.controls HappyFace</code> 执行</p>
+<p><img src="https://i.bmp.ovh/imgs/2021/10/9098fa3afd9fa701.png" alt=""></p>
 </li>
 </ol>
-<p><img src="https://i.bmp.ovh/imgs/2021/10/b784140ca3b71ce0.png"></p>
+<p><img src="https://i.bmp.ovh/imgs/2021/10/b784140ca3b71ce0.png" alt=""></p>
 <p><code>HappyFace.java</code>改成需要运行的java文件即可</p>
 <p>如<code>javac --module-path %PATH_TO_FX%  --add-modules javafx.controls YellowFace.java</code></p>
 <pre><code>```java --module-path %PATH_TO_FX%  --add-modules javafx.controls YellowFace```
 </code></pre>
-<p><img src="https://i.bmp.ovh/imgs/2021/10/0ef0b7ddb901cc09.png"></p>
+<p><img src="https://i.bmp.ovh/imgs/2021/10/0ef0b7ddb901cc09.png" alt=""></p>
 <p><img src="https://img11.360buyimg.com/ddimg/jfs/t1/207608/28/5996/15795/616e9c2aEecdc506c/6f2154264d3183ed.png" alt="image.png"></p>
-<h4 id="JDK版本的切换"><a href="#JDK版本的切换" class="headerlink" title="JDK版本的切换"></a>JDK版本的切换</h4><ol>
-<li><p>在控制台中查看当前javac与java版本，注意：javac与java必须版本一致<br><code>javac -version</code></p>
-<p><code>java -version</code><br><img src="https://img14.360buyimg.com/ddimg/jfs/t1/170247/28/21612/22632/616e9d3fE3627bd54/d33a205d12e322f3.png" alt="image.png"></p>
+<h4 id="JDK版本的切换">JDK版本的切换</h4>
+<ol>
+<li>
+<p>在控制台中查看当前javac与java版本，注意：javac与java必须版本一致<br>
+<code>javac -version</code></p>
+<p><code>java -version</code><br>
+<img src="https://img14.360buyimg.com/ddimg/jfs/t1/170247/28/21612/22632/616e9d3fE3627bd54/d33a205d12e322f3.png" alt="image.png"></p>
 </li>
-<li><p>改变 JAVA_HOME 中的JDK路径<br><img src="https://img13.360buyimg.com/ddimg/jfs/t1/200354/9/13751/19979/616e9ddbE0f46e821/67a7125c037c71c4.png" alt="image.png"></p>
+<li>
+<p>改变 JAVA_HOME 中的JDK路径<br>
+<img src="https://img13.360buyimg.com/ddimg/jfs/t1/200354/9/13751/19979/616e9ddbE0f46e821/67a7125c037c71c4.png" alt="image.png"></p>
 <p>点击编辑并更改路径</p>
 <p><img src="https://img12.360buyimg.com/ddimg/jfs/t1/216931/39/1017/10637/616e9f54Ee5f078ed/25e19b709069359f.png" alt="image.png"></p>
 <p><img src="https://img12.360buyimg.com/ddimg/jfs/t1/199494/20/13789/24204/616e9f2eEfd5c7fbd/c0a3f8b6167d8c06.png" alt="image.png"></p>
 </li>
 </ol>
 <p><strong>注意：环境变量更改后需要重新启动cmd窗口，否则无法查看到更改后的java版本</strong></p>
-<h3 id="小结："><a href="#小结：" class="headerlink" title="小结："></a>小结：</h3><ol>
+<h3 id="小结：">小结：</h3>
+<ol>
 <li>通过设置JAVA_HOME可以快速切换JDK版本，非常方便。</li>
 <li>运行javaFX程序时，如果使用java8则可以直接编译运行，但是java11和java17需要额外设置环境变量。</li>
 </ol>
@@ -654,15 +734,19 @@
 </div>
 
 
+<!-- -->
+<!--
+
   <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
+-->
 
 
   <span class="post-meta-divider">|</span>
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -709,6 +793,8 @@
   
 
 
+  
+
 
 
 
@@ -749,6 +835,11 @@
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
 
   
 
@@ -761,6 +852,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
@@ -809,6 +907,323 @@
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 

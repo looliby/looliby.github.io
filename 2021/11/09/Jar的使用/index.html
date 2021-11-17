@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="Jar的使用中文摘要什么是jar包？ JAR文件的全称是Java Archive File，意思是Java档案文件。是一种压缩文件，与常见的ZIP压缩文件兼容。两者最大的区别是在JAR文件中默认包含一个名为META-INF&#x2F;MANIFEST.MF的清单文件，这个文件是生成JAR文件时由系统自动创建的。 使用jar包的好处  安全，可以对其进行数字签名，只让能够识别数字签名的用户使用里面的东西。 加">
+<meta name="description" content="Jar的使用 中文摘要 什么是jar包？ JAR文件的全称是Java Archive File，意思是Java档案文件。是一种压缩文件，与常见的ZIP压缩文件兼容。两者最大的区别是在JAR文件中默认包含一个名为META-INF&#x2F;MANIFEST.MF的清单文件，这个文件是生成JAR文件时由系统自动创建的。 使用jar包的好处  安全，可以对其进行数字签名，只让能够识别数字签名的用户使用里面的东西。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jar包的使用">
 <meta property="og:url" content="http://example.com/2021/11/09/Jar%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="Looliby&#39;s blog">
-<meta property="og:description" content="Jar的使用中文摘要什么是jar包？ JAR文件的全称是Java Archive File，意思是Java档案文件。是一种压缩文件，与常见的ZIP压缩文件兼容。两者最大的区别是在JAR文件中默认包含一个名为META-INF&#x2F;MANIFEST.MF的清单文件，这个文件是生成JAR文件时由系统自动创建的。 使用jar包的好处  安全，可以对其进行数字签名，只让能够识别数字签名的用户使用里面的东西。 加">
+<meta property="og:description" content="Jar的使用 中文摘要 什么是jar包？ JAR文件的全称是Java Archive File，意思是Java档案文件。是一种压缩文件，与常见的ZIP压缩文件兼容。两者最大的区别是在JAR文件中默认包含一个名为META-INF&#x2F;MANIFEST.MF的清单文件，这个文件是生成JAR文件时由系统自动创建的。 使用jar包的好处  安全，可以对其进行数字签名，只让能够识别数字签名的用户使用里面的东西。">
 <meta property="og:locale">
 <meta property="og:image" content="https://img10.360buyimg.com/ddimg/jfs/t1/223004/1/480/25468/617bb5cbEcf12ca21/92b9ef81857a3921.png">
 <meta property="og:image" content="https://img12.360buyimg.com/ddimg/jfs/t1/137587/21/23337/27767/617bb60aE3600b3ca/8af1d2e7c72997b5.png">
@@ -104,7 +104,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '',
-    scheme: 'Mist',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -238,9 +238,43 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -342,6 +376,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
 
           
 
@@ -358,7 +423,9 @@
       
 
       
-        <h1 id="Jar的使用"><a href="#Jar的使用" class="headerlink" title="Jar的使用"></a>Jar的使用</h1><h2 id="中文摘要"><a href="#中文摘要" class="headerlink" title="中文摘要"></a>中文摘要</h2><p><strong>什么是jar包？</strong></p>
+        <h1>Jar的使用</h1>
+<h2 id="中文摘要">中文摘要</h2>
+<p><strong>什么是jar包？</strong></p>
 <p>JAR文件的全称是Java Archive File，意思是Java档案文件。是一种压缩文件，与常见的ZIP压缩文件兼容。两者最大的区别是在JAR文件中默认包含一个名为META-INF/MANIFEST.MF的清单文件，这个文件是生成JAR文件时由系统自动创建的。</p>
 <p><strong>使用jar包的好处</strong></p>
 <ul>
@@ -372,78 +439,107 @@
 </ul>
 <p><strong>什么情况下使用jar包？</strong></p>
 <p>当开发一个应用程序后这个应用程序包含了很多类，如果需要把这个程序提供给别人使用，通常会将这些类文件打包成一个JAR文件，把这个文件提供给别人使用。只要在别人系统的CLASSPATH环境变量中添加这个文件，则java虚拟机就可以自动在内存中解压这个jar包。</p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ol>
+<h2 id="前言">前言</h2>
+<h3 id="目的">目的</h3>
+<ol>
 <li>学会打包java程序，将编译后的java文件打包成jar。</li>
 <li>加深对java中包的理解。</li>
 </ol>
-<h3 id="内容概述"><a href="#内容概述" class="headerlink" title="内容概述"></a>内容概述</h3><ol>
+<h3 id="内容概述">内容概述</h3>
+<ol>
 <li>将java源文件编译后，使用<code>jar</code>命令后打包成jar程序。</li>
 <li>通过命令行运行jar程序。</li>
 </ol>
-<h2 id="软件环境"><a href="#软件环境" class="headerlink" title="软件环境"></a>软件环境</h2><ul>
+<h2 id="软件环境">软件环境</h2>
+<ul>
 <li>操作系统： Window10</li>
 <li>JDK版本：   java11</li>
 </ul>
-<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p><strong>打包有目录的java程序</strong></p>
+<h2 id="内容">内容</h2>
+<p><strong>打包有目录的java程序</strong></p>
 <ol>
-<li>新建一个 .java 文件, 如图：创建了test.java文件(主类)，其中包含com文件夹下的PersonAddress类<br><img src="https://img10.360buyimg.com/ddimg/jfs/t1/223004/1/480/25468/617bb5cbEcf12ca21/92b9ef81857a3921.png" alt="image.png"></li>
+<li>新建一个 .java 文件, 如图：创建了test.java文件(主类)，其中包含com文件夹下的PersonAddress类<br>
+<img src="https://img10.360buyimg.com/ddimg/jfs/t1/223004/1/480/25468/617bb5cbEcf12ca21/92b9ef81857a3921.png" alt="image.png"></li>
 </ol>
 <p><img src="https://img12.360buyimg.com/ddimg/jfs/t1/137587/21/23337/27767/617bb60aE3600b3ca/8af1d2e7c72997b5.png" alt="image.png"></p>
 <ol start="2">
-<li><p>通过命令行的方式编译文件。<strong>注意，需要先编译得到.class文件才能进行打包</strong><br>输入命令<code>javac test.java</code><br>需要预先配置好[java环境](<a target="_blank" rel="noopener" href="https://gitee.com/looliby/home-work/blob/master/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/java%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.md">实验报告/java环境配置.md · looliby/HomeWork - 码云 - 开源中国 (gitee.com)</a>)<br>编译完成后，可以看到文件夹中生成了test.class文件。</p>
+<li>
+<p>通过命令行的方式编译文件。<strong>注意，需要先编译得到.class文件才能进行打包</strong><br>
+输入命令<code>javac test.java</code><br>
+需要预先配置好[java环境](<a target="_blank" rel="noopener" href="https://gitee.com/looliby/home-work/blob/master/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/java%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.md">实验报告/java环境配置.md · looliby/HomeWork - 码云 - 开源中国 (gitee.com)</a>)<br>
+编译完成后，可以看到文件夹中生成了test.class文件。</p>
 </li>
-<li><p>打包java程序。<br>这个时候我们需要先准备MEFINEST.MF文件，该文件用于描述Jar包的信息，此处只要描述Main-Class即可</p>
+<li>
+<p>打包java程序。<br>
+这个时候我们需要先准备MEFINEST.MF文件，该文件用于描述Jar包的信息，此处只要描述Main-Class即可</p>
 <pre class="line-numbers language-none"><code class="language-none">1 Manifest-Version: 1.0
 2 Created-By: java11
 3 Main-Class: test
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
 <pre><code>事先准备好上述的MENIFEST.MF文件，并存放在META-INF文件夹下，此时打jar包的命令如下
 </code></pre>
-<p>   <code>jar -cvfm test.jar META-INF\MENIFEST.MF test.class com</code></p>
+<p><code>jar -cvfm test.jar META-INF\MENIFEST.MF test.class com</code></p>
 <ul>
-<li><p>test.jar是打包后的程序名 </p>
+<li>
+<p>test.jar是打包后的程序名</p>
 </li>
-<li><p>-cvfm表示自定义清单文件</p>
+<li>
+<p>-cvfm表示自定义清单文件</p>
 </li>
-<li><p>com表示打包com文件夹下的所有程序<br>运行过程如下：</p>
+<li>
+<p>com表示打包com文件夹下的所有程序<br>
+运行过程如下：</p>
 <p><img src="https://img14.360buyimg.com/ddimg/jfs/t1/196852/2/15071/28647/617be2f1E49cb182d/3236cfe927272f94.png" alt="image.png"></p>
 </li>
 </ul>
 </li>
-<li><p>运行打包后的jar<br><code>java -jar test.jar</code><br>运行结果如下：<br><img src="https://img10.360buyimg.com/ddimg/jfs/t1/210370/17/7264/31644/617be31eE606591db/97baf3a738d121d4.png" alt="image.png"></p>
+<li>
+<p>运行打包后的jar<br>
+<code>java -jar test.jar</code><br>
+运行结果如下：<br>
+<img src="https://img10.360buyimg.com/ddimg/jfs/t1/210370/17/7264/31644/617be31eE606591db/97baf3a738d121d4.png" alt="image.png"></p>
 </li>
-<li><p>使用<code>jar -tf test.jar</code>可以查看jar包中包含文件，样例中包含文件如下</p>
+<li>
+<p>使用<code>jar -tf test.jar</code>可以查看jar包中包含文件，样例中包含文件如下</p>
 <pre class="line-numbers language-none"><code class="language-none">META-INF&#x2F;
 META-INF&#x2F;MANIFEST.MF
 test.class
 com&#x2F;
 com&#x2F;PersonAddress.class
-com&#x2F;PersonAddress.java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+com&#x2F;PersonAddress.java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 </ol>
 <p><strong>制作含有jar文件的jar包</strong></p>
 <ol>
-<li><p>编写一个Beer.java类并将其编译成Beer.class, 并生成jar包</p>
+<li>
+<p>编写一个Beer.java类并将其编译成Beer.class, 并生成jar包</p>
 <pre class="line-numbers language-none"><code class="language-none">javac com&#x2F;Beer.java
-jar -cvf Beer.jar com&#x2F;Beer.class<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
-<li><p>test类中调用了Beer类，此时Beer类已经打包，这个时候需要在打jar包时使用 -cp 参数，将Beer.jar包引入<br><code>javac -cp Beer.jar test.java</code><br>这里的 -cp 表示 -classpath, 指的是把Beer.jar加入classpath路径下</p>
+jar -cvf Beer.jar com&#x2F;Beer.class<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </li>
-<li><p>把生成的test.class打成jar包</p>
+<li>
+<p>test类中调用了Beer类，此时Beer类已经打包，这个时候需要在打jar包时使用 -cp 参数，将Beer.jar包引入<br>
+<code>javac -cp Beer.jar test.java</code><br>
+这里的 -cp 表示 -classpath, 指的是把Beer.jar加入classpath路径下</p>
+</li>
+<li>
+<p>把生成的test.class打成jar包</p>
 <pre class="line-numbers language-none"><code class="language-none">jar -cvfm test.jar META-INF\MANIFEST.MF test.class Beer.jar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
 <p>这里的MANIFEST.MF与之前大致相同，但由于引入了jar包，需要在MENIFEST.MF文件中配置一个新属性，路径指向所需要的所有jar包，如图：</p>
 <pre class="line-numbers language-none"><code class="language-none">1 Manifest-Version: 1.0
 2 Created-By: java11
 3 Main-Class: test
 4 Class-Path: Beer.jar
 5 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p><strong>注意：文件末尾要有空白行</strong></p>
 </li>
-<li><p>最后运行jar包<br><code>java -jar test.jar</code><br><img src="https://img14.360buyimg.com/ddimg/jfs/t1/197863/33/15302/26523/617be8a7E9119f8d2/88690bf3f06fa99f.png" alt="image.png"></p>
+<li>
+<p>最后运行jar包<br>
+<code>java -jar test.jar</code><br>
+<img src="https://img14.360buyimg.com/ddimg/jfs/t1/197863/33/15302/26523/617be8a7E9119f8d2/88690bf3f06fa99f.png" alt="image.png"></p>
 </li>
 </ol>
-<h4 id="jar常见命令"><a href="#jar常见命令" class="headerlink" title="jar常见命令"></a>jar常见命令</h4><ul>
+<h4 id="jar常见命令">jar常见命令</h4>
+<ul>
 <li><code>jar cf test.jar test</code>  不显示压缩过程将当前路径下的test路径下的全部内容生成一个test.jar文件，如果已经存在则被覆盖。</li>
 <li><code>jar cvf test.jar test</code> 显示压缩过程；</li>
 <li><code>jar cvfM test.jar test</code> 不生成清单文件；</li>
@@ -457,7 +553,8 @@ jar -cvf Beer.jar com&#x2F;Beer.class<span aria-hidden="true" class="line-number
 <li><code>jar uf test.jar Hello.class:</code> 更新test.jar中的Hello.jar文件，如果存在则覆盖，否则添加；</li>
 <li><code>jar uvf test.jar Hello.class：</code> 更新时显示详细信息；</li>
 </ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ol>
+<h2 id="小结">小结</h2>
+<ol>
 <li>jar包能将所需要的类封装，处理包含多个类的程序时十分方便。</li>
 <li>当类中声明所在的package时，其他类调用该类只需import对应文件夹下的类名即可</li>
 <li>jar包会自动生成一个MANIFEST.MF文件，也可以通过自定义生成，在自定义的清单文件中，需要声明主类和该类所需要的jar包。</li>
@@ -657,7 +754,7 @@ jar -cvf Beer.jar com&#x2F;Beer.class<span aria-hidden="true" class="line-number
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Jar%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">Jar的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%E6%91%98%E8%A6%81"><span class="nav-number">1.1.</span> <span class="nav-text">中文摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.2.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E7%9A%84"><span class="nav-number">1.2.1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E6%A6%82%E8%BF%B0"><span class="nav-number">1.2.2.</span> <span class="nav-text">内容概述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E7%8E%AF%E5%A2%83"><span class="nav-number">1.3.</span> <span class="nav-text">软件环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AE%B9"><span class="nav-number">1.4.</span> <span class="nav-text">内容</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#jar%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">jar常见命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">1.5.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Jar的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%E6%91%98%E8%A6%81"><span class="nav-number">1.1.</span> <span class="nav-text">中文摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.2.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E7%9A%84"><span class="nav-number">1.2.1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E6%A6%82%E8%BF%B0"><span class="nav-number">1.2.2.</span> <span class="nav-text">内容概述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E7%8E%AF%E5%A2%83"><span class="nav-number">1.3.</span> <span class="nav-text">软件环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AE%B9"><span class="nav-number">1.4.</span> <span class="nav-text">内容</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#jar%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">jar常见命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">1.5.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -687,15 +784,19 @@ jar -cvf Beer.jar com&#x2F;Beer.class<span aria-hidden="true" class="line-number
 </div>
 
 
+<!-- -->
+<!--
+
   <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
+-->
 
 
   <span class="post-meta-divider">|</span>
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -742,6 +843,8 @@ jar -cvf Beer.jar com&#x2F;Beer.class<span aria-hidden="true" class="line-number
   
 
 
+  
+
 
 
 
@@ -782,6 +885,11 @@ jar -cvf Beer.jar com&#x2F;Beer.class<span aria-hidden="true" class="line-number
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
 
   
 
@@ -794,6 +902,13 @@ jar -cvf Beer.jar com&#x2F;Beer.class<span aria-hidden="true" class="line-number
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
@@ -842,6 +957,323 @@ jar -cvf Beer.jar com&#x2F;Beer.class<span aria-hidden="true" class="line-number
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 
