@@ -181,199 +181,6 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>jar包的使用</title>
-    <url>/2021/11/09/Jar%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1>Jar的使用</h1>
-<h2 id="中文摘要">中文摘要</h2>
-<p><strong>什么是jar包？</strong></p>
-<p>JAR文件的全称是Java Archive File，意思是Java档案文件。是一种压缩文件，与常见的ZIP压缩文件兼容。两者最大的区别是在JAR文件中默认包含一个名为META-INF/MANIFEST.MF的清单文件，这个文件是生成JAR文件时由系统自动创建的。</p>
-<p><strong>使用jar包的好处</strong></p>
-<ul>
-<li>安全，可以对其进行数字签名，只让能够识别数字签名的用户使用里面的东西。</li>
-<li>加快下载速度；</li>
-<li>压缩，使文件变小，与ZIP压缩机制完全相同。</li>
-<li>包封装。能够让JAR包里面的文件依赖于统一版本的类文件。</li>
-<li>可移植性，能够在各种平台上直接使用。</li>
-<li>把一个JAR文件添加到系统的classpath环境变量之后，java通常会把这个JAR文件当做一个路径来处理。通常使用jar命令来压缩，</li>
-<li>以把一个或多个路径全部压缩成一个JAR文件。</li>
-</ul>
-<p><strong>什么情况下使用jar包？</strong></p>
-<p>当开发一个应用程序后这个应用程序包含了很多类，如果需要把这个程序提供给别人使用，通常会将这些类文件打包成一个JAR文件，把这个文件提供给别人使用。只要在别人系统的CLASSPATH环境变量中添加这个文件，则java虚拟机就可以自动在内存中解压这个jar包。</p>
-<h2 id="前言">前言</h2>
-<h3 id="目的">目的</h3>
-<ol>
-<li>学会打包java程序，将编译后的java文件打包成jar。</li>
-<li>加深对java中包的理解。</li>
-</ol>
-<h3 id="内容概述">内容概述</h3>
-<ol>
-<li>将java源文件编译后，使用<code>jar</code>命令后打包成jar程序。</li>
-<li>通过命令行运行jar程序。</li>
-</ol>
-<h2 id="软件环境">软件环境</h2>
-<ul>
-<li>操作系统： Window10</li>
-<li>JDK版本：   java11</li>
-</ul>
-<h2 id="内容">内容</h2>
-<p><strong>打包有目录的java程序</strong></p>
-<ol>
-<li>新建一个 .java 文件, 如图：创建了test.java文件(主类)，其中包含com文件夹下的PersonAddress类<br>
-<img src="https://img10.360buyimg.com/ddimg/jfs/t1/223004/1/480/25468/617bb5cbEcf12ca21/92b9ef81857a3921.png" alt="image.png"></li>
-</ol>
-<p><img src="https://img12.360buyimg.com/ddimg/jfs/t1/137587/21/23337/27767/617bb60aE3600b3ca/8af1d2e7c72997b5.png" alt="image.png"></p>
-<ol start="2">
-<li>
-<p>通过命令行的方式编译文件。<strong>注意，需要先编译得到.class文件才能进行打包</strong><br>
-输入命令<code>javac test.java</code><br>
-需要预先配置好[java环境](<a href="https://gitee.com/looliby/home-work/blob/master/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/java%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.md">实验报告/java环境配置.md · looliby/HomeWork - 码云 - 开源中国 (gitee.com)</a>)<br>
-编译完成后，可以看到文件夹中生成了test.class文件。</p>
-</li>
-<li>
-<p>打包java程序。<br>
-这个时候我们需要先准备MEFINEST.MF文件，该文件用于描述Jar包的信息，此处只要描述Main-Class即可</p>
-<pre class="line-numbers language-none"><code class="language-none">1 Manifest-Version: 1.0
-2 Created-By: java11
-3 Main-Class: test
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<pre><code>事先准备好上述的MENIFEST.MF文件，并存放在META-INF文件夹下，此时打jar包的命令如下
-</code></pre>
-<p><code>jar -cvfm test.jar META-INF\MENIFEST.MF test.class com</code></p>
-<ul>
-<li>
-<p>test.jar是打包后的程序名</p>
-</li>
-<li>
-<p>-cvfm表示自定义清单文件</p>
-</li>
-<li>
-<p>com表示打包com文件夹下的所有程序<br>
-运行过程如下：</p>
-<p><img src="https://img14.360buyimg.com/ddimg/jfs/t1/196852/2/15071/28647/617be2f1E49cb182d/3236cfe927272f94.png" alt="image.png"></p>
-</li>
-</ul>
-</li>
-<li>
-<p>运行打包后的jar<br>
-<code>java -jar test.jar</code><br>
-运行结果如下：<br>
-<img src="https://img10.360buyimg.com/ddimg/jfs/t1/210370/17/7264/31644/617be31eE606591db/97baf3a738d121d4.png" alt="image.png"></p>
-</li>
-<li>
-<p>使用<code>jar -tf test.jar</code>可以查看jar包中包含文件，样例中包含文件如下</p>
-<pre class="line-numbers language-none"><code class="language-none">META-INF&#x2F;
-META-INF&#x2F;MANIFEST.MF
-test.class
-com&#x2F;
-com&#x2F;PersonAddress.class
-com&#x2F;PersonAddress.java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-</ol>
-<p><strong>制作含有jar文件的jar包</strong></p>
-<ol>
-<li>
-<p>编写一个Beer.java类并将其编译成Beer.class, 并生成jar包</p>
-<pre class="line-numbers language-none"><code class="language-none">javac com&#x2F;Beer.java
-jar -cvf Beer.jar com&#x2F;Beer.class<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>test类中调用了Beer类，此时Beer类已经打包，这个时候需要在打jar包时使用 -cp 参数，将Beer.jar包引入<br>
-<code>javac -cp Beer.jar test.java</code><br>
-这里的 -cp 表示 -classpath, 指的是把Beer.jar加入classpath路径下</p>
-</li>
-<li>
-<p>把生成的test.class打成jar包</p>
-<pre class="line-numbers language-none"><code class="language-none">jar -cvfm test.jar META-INF\MANIFEST.MF test.class Beer.jar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这里的MANIFEST.MF与之前大致相同，但由于引入了jar包，需要在MENIFEST.MF文件中配置一个新属性，路径指向所需要的所有jar包，如图：</p>
-<pre class="line-numbers language-none"><code class="language-none">1 Manifest-Version: 1.0
-2 Created-By: java11
-3 Main-Class: test
-4 Class-Path: Beer.jar
-5 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>注意：文件末尾要有空白行</strong></p>
-</li>
-<li>
-<p>最后运行jar包<br>
-<code>java -jar test.jar</code><br>
-<img src="https://img14.360buyimg.com/ddimg/jfs/t1/197863/33/15302/26523/617be8a7E9119f8d2/88690bf3f06fa99f.png" alt="image.png"></p>
-</li>
-</ol>
-<h4 id="jar常见命令">jar常见命令</h4>
-<ul>
-<li><code>jar cf test.jar test</code>  不显示压缩过程将当前路径下的test路径下的全部内容生成一个test.jar文件，如果已经存在则被覆盖。</li>
-<li><code>jar cvf test.jar test</code> 显示压缩过程；</li>
-<li><code>jar cvfM test.jar test</code> 不生成清单文件；</li>
-<li><code>jar cvfm test.jar manifest.mf test</code> 自定义清单文件信息，m指定读取用户清单信息。清单文件是普通文本文件。</li>
-<li><code>jar cvfm test.jar a.txt test</code> 将清单文件中的key-value对提取到META-INF/MANIFEST.MF文件中。</li>
-<li><code>jar tf test.jar</code> 查看jar包内容；</li>
-<li><code>jar tf test.jar &gt; a.txt:</code> 如果jar包中的文件路径和文件非常多，用上一个命令就无法查看所有，所以用重定向将显示结果保存到文件中。</li>
-<li><code>jar tvf test.jar:</code> 查看详细内容；</li>
-<li><code>jar xf test.jar</code> 解压，将jar文件解压到当前目录下；</li>
-<li><code>jar xvf test.jar</code> 解压，显示解压过程的信息；</li>
-<li><code>jar uf test.jar Hello.class:</code> 更新test.jar中的Hello.jar文件，如果存在则覆盖，否则添加；</li>
-<li><code>jar uvf test.jar Hello.class：</code> 更新时显示详细信息；</li>
-</ul>
-<h2 id="小结">小结</h2>
-<ol>
-<li>jar包能将所需要的类封装，处理包含多个类的程序时十分方便。</li>
-<li>当类中声明所在的package时，其他类调用该类只需import对应文件夹下的类名即可</li>
-<li>jar包会自动生成一个MANIFEST.MF文件，也可以通过自定义生成，在自定义的清单文件中，需要声明主类和该类所需要的jar包。</li>
-<li>实验过程中发现，当所写的类声明了package后，不能直接进入package类中对该类进行编译，而是需要退到上级目录，才能对该类进行编译。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>jar</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Markdown基本语法</title>
-    <url>/2021/11/03/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<p>Markdown是一种轻量级标记语言，排版语法简洁，让人们更多地关注内容本身而非排版。它使用易读易写的纯文本格式编写文档，可与HTML混编，可导出 HTML、PDF 以及本身的 .md 格式的文件。因简洁、高效、易读、易写，Markdown被大量使用，如Github、Wikipedia等网站，如各大博客平台：WordPress、Drupal、简书等。</p>
-<p>在线体验一下 Markdown在线编辑器。</p>
-<p>千万不要被「标记」、「语言」吓到，Markdown的语法十分简单，常用的标记符号不超过十 个，用于日常写作记录绰绰有余，不到半小时就能完全掌握。</p>
-<p>就是这十个不到的标记符号，却能让人优雅地沉浸式记录，专注内容而不是纠结排版， 达到「心中无尘，码字入神」的境界。</p>
-<p>让我们从 Markdown 标题语法开始学习吧。</p>
-<p>标题<br>
-要创建标题，请在单词或短语前面添加井号(#)<br>
-#的数目表示标题的级别。</p>
-<p>段落<br>
-空白行或多行文本分隔即可创建段落 。</p>
-<p>换行<br>
-在一行的末尾添加两个或多个空格，再按回车，或者添加<br></p>
-<p>强调<br>
-在单词或短语前后添加两个星号或下划线 。<br>
-如： <strong>bold text</strong><br>
-效果： bold text</p>
-<p>引用<br>
-在段落前添加一个&gt;符号即可 。</p>
-<p>列表<br>
-要创建有序列表，请在每个列表项前添加数字并紧跟一个英文句点。数字不必按数学顺序排列，但是列表应当以数字 1 起始。</p>
-<p>代码<br>
-要将单词或短语表示为代码，请将其包裹在反引号 (`) 中。</p>
-<p>转义反引号<br>
-如果你要表示为代码的单词或短语中包含一个或多个反引号，则可以通过将单词或短语包裹在双反引号(``)中。</p>
-<p>分割线<br>
-要创建分隔线，请在单独一行上使用三个或多个星号 (***)、破折号 (—) 或下划线 (___) ，并且不能包含其他内容。</p>
-<p>链接<br>
-链接文本放在中括号内，链接地址放在后面的括号中，链接title可选。</p>
-<p>超链接Markdown语法代码：<a href="%E8%B6%85%E9%93%BE%E6%8E%A5%E5%9C%B0%E5%9D%80" title="超链接title">超链接显示名</a></p>
-<p>图片<br>
-要添加图像，请使用感叹号 (!), 然后在方括号增加替代文本，图片链接放在圆括号里，括号里的链接后可以增加一个可选的图片标题文本。</p>
-<p>插入图片Markdown语法代码：<code>![图片alt](图片链接 &quot;图片title&quot;)</code>。</p>
-<p>转义<br>
-显示原本用于格式化 Markdown 文档的字符，请在字符前面添加反斜杠字符 。</p>
-]]></content>
-      <categories>
-        <category>语法</category>
-      </categories>
-      <tags>
-        <tag>markwown语法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JavaSE内部类与异常处理</title>
     <url>/2021/11/09/Java%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h1>JavaSE</h1>
@@ -603,23 +410,49 @@ jar -cvf Beer.jar com&#x2F;Beer.class<span aria-hidden="true" class="line-number
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2021/11/03/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <title>Markdown基本语法</title>
+    <url>/2021/11/03/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<p>Markdown是一种轻量级标记语言，排版语法简洁，让人们更多地关注内容本身而非排版。它使用易读易写的纯文本格式编写文档，可与HTML混编，可导出 HTML、PDF 以及本身的 .md 格式的文件。因简洁、高效、易读、易写，Markdown被大量使用，如Github、Wikipedia等网站，如各大博客平台：WordPress、Drupal、简书等。</p>
+<p>在线体验一下 Markdown在线编辑器。</p>
+<p>千万不要被「标记」、「语言」吓到，Markdown的语法十分简单，常用的标记符号不超过十 个，用于日常写作记录绰绰有余，不到半小时就能完全掌握。</p>
+<p>就是这十个不到的标记符号，却能让人优雅地沉浸式记录，专注内容而不是纠结排版， 达到「心中无尘，码字入神」的境界。</p>
+<p>让我们从 Markdown 标题语法开始学习吧。</p>
+<p>标题<br>
+要创建标题，请在单词或短语前面添加井号(#)<br>
+#的数目表示标题的级别。</p>
+<p>段落<br>
+空白行或多行文本分隔即可创建段落 。</p>
+<p>换行<br>
+在一行的末尾添加两个或多个空格，再按回车，或者添加<br></p>
+<p>强调<br>
+在单词或短语前后添加两个星号或下划线 。<br>
+如： <strong>bold text</strong><br>
+效果： bold text</p>
+<p>引用<br>
+在段落前添加一个&gt;符号即可 。</p>
+<p>列表<br>
+要创建有序列表，请在每个列表项前添加数字并紧跟一个英文句点。数字不必按数学顺序排列，但是列表应当以数字 1 起始。</p>
+<p>代码<br>
+要将单词或短语表示为代码，请将其包裹在反引号 (`) 中。</p>
+<p>转义反引号<br>
+如果你要表示为代码的单词或短语中包含一个或多个反引号，则可以通过将单词或短语包裹在双反引号(``)中。</p>
+<p>分割线<br>
+要创建分隔线，请在单独一行上使用三个或多个星号 (***)、破折号 (—) 或下划线 (___) ，并且不能包含其他内容。</p>
+<p>链接<br>
+链接文本放在中括号内，链接地址放在后面的括号中，链接title可选。</p>
+<p>超链接Markdown语法代码：<a href="%E8%B6%85%E9%93%BE%E6%8E%A5%E5%9C%B0%E5%9D%80" title="超链接title">超链接显示名</a></p>
+<p>图片<br>
+要添加图像，请使用感叹号 (!), 然后在方括号增加替代文本，图片链接放在圆括号里，括号里的链接后可以增加一个可选的图片标题文本。</p>
+<p>插入图片Markdown语法代码：<code>![图片alt](图片链接 &quot;图片title&quot;)</code>。</p>
+<p>转义<br>
+显示原本用于格式化 Markdown 文档的字符，请在字符前面添加反斜杠字符 。</p>
 ]]></content>
+      <categories>
+        <category>语法</category>
+      </categories>
+      <tags>
+        <tag>markwown语法</tag>
+      </tags>
   </entry>
   <entry>
     <title>JavaFx总结</title>
@@ -1510,6 +1343,173 @@ Demonstration of event handling within the ButtonDemo2 class.
       </tags>
   </entry>
   <entry>
+    <title>jar包的使用</title>
+    <url>/2021/11/09/Jar%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1>Jar的使用</h1>
+<h2 id="中文摘要">中文摘要</h2>
+<p><strong>什么是jar包？</strong></p>
+<p>JAR文件的全称是Java Archive File，意思是Java档案文件。是一种压缩文件，与常见的ZIP压缩文件兼容。两者最大的区别是在JAR文件中默认包含一个名为META-INF/MANIFEST.MF的清单文件，这个文件是生成JAR文件时由系统自动创建的。</p>
+<p><strong>使用jar包的好处</strong></p>
+<ul>
+<li>安全，可以对其进行数字签名，只让能够识别数字签名的用户使用里面的东西。</li>
+<li>加快下载速度；</li>
+<li>压缩，使文件变小，与ZIP压缩机制完全相同。</li>
+<li>包封装。能够让JAR包里面的文件依赖于统一版本的类文件。</li>
+<li>可移植性，能够在各种平台上直接使用。</li>
+<li>把一个JAR文件添加到系统的classpath环境变量之后，java通常会把这个JAR文件当做一个路径来处理。通常使用jar命令来压缩，</li>
+<li>以把一个或多个路径全部压缩成一个JAR文件。</li>
+</ul>
+<p><strong>什么情况下使用jar包？</strong></p>
+<p>当开发一个应用程序后这个应用程序包含了很多类，如果需要把这个程序提供给别人使用，通常会将这些类文件打包成一个JAR文件，把这个文件提供给别人使用。只要在别人系统的CLASSPATH环境变量中添加这个文件，则java虚拟机就可以自动在内存中解压这个jar包。</p>
+<h2 id="前言">前言</h2>
+<h3 id="目的">目的</h3>
+<ol>
+<li>学会打包java程序，将编译后的java文件打包成jar。</li>
+<li>加深对java中包的理解。</li>
+</ol>
+<h3 id="内容概述">内容概述</h3>
+<ol>
+<li>将java源文件编译后，使用<code>jar</code>命令后打包成jar程序。</li>
+<li>通过命令行运行jar程序。</li>
+</ol>
+<h2 id="软件环境">软件环境</h2>
+<ul>
+<li>操作系统： Window10</li>
+<li>JDK版本：   java11</li>
+</ul>
+<h2 id="内容">内容</h2>
+<p><strong>打包有目录的java程序</strong></p>
+<ol>
+<li>新建一个 .java 文件, 如图：创建了test.java文件(主类)，其中包含com文件夹下的PersonAddress类<br>
+<img src="https://img10.360buyimg.com/ddimg/jfs/t1/223004/1/480/25468/617bb5cbEcf12ca21/92b9ef81857a3921.png" alt="image.png"></li>
+</ol>
+<p><img src="https://img12.360buyimg.com/ddimg/jfs/t1/137587/21/23337/27767/617bb60aE3600b3ca/8af1d2e7c72997b5.png" alt="image.png"></p>
+<ol start="2">
+<li>
+<p>通过命令行的方式编译文件。<strong>注意，需要先编译得到.class文件才能进行打包</strong><br>
+输入命令<code>javac test.java</code><br>
+需要预先配置好[java环境](<a href="https://gitee.com/looliby/home-work/blob/master/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/java%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.md">实验报告/java环境配置.md · looliby/HomeWork - 码云 - 开源中国 (gitee.com)</a>)<br>
+编译完成后，可以看到文件夹中生成了test.class文件。</p>
+</li>
+<li>
+<p>打包java程序。<br>
+这个时候我们需要先准备MEFINEST.MF文件，该文件用于描述Jar包的信息，此处只要描述Main-Class即可</p>
+<pre class="line-numbers language-none"><code class="language-none">1 Manifest-Version: 1.0
+2 Created-By: java11
+3 Main-Class: test
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre><code>事先准备好上述的MENIFEST.MF文件，并存放在META-INF文件夹下，此时打jar包的命令如下
+</code></pre>
+<p><code>jar -cvfm test.jar META-INF\MENIFEST.MF test.class com</code></p>
+<ul>
+<li>
+<p>test.jar是打包后的程序名</p>
+</li>
+<li>
+<p>-cvfm表示自定义清单文件</p>
+</li>
+<li>
+<p>com表示打包com文件夹下的所有程序<br>
+运行过程如下：</p>
+<p><img src="https://img14.360buyimg.com/ddimg/jfs/t1/196852/2/15071/28647/617be2f1E49cb182d/3236cfe927272f94.png" alt="image.png"></p>
+</li>
+</ul>
+</li>
+<li>
+<p>运行打包后的jar<br>
+<code>java -jar test.jar</code><br>
+运行结果如下：<br>
+<img src="https://img10.360buyimg.com/ddimg/jfs/t1/210370/17/7264/31644/617be31eE606591db/97baf3a738d121d4.png" alt="image.png"></p>
+</li>
+<li>
+<p>使用<code>jar -tf test.jar</code>可以查看jar包中包含文件，样例中包含文件如下</p>
+<pre class="line-numbers language-none"><code class="language-none">META-INF&#x2F;
+META-INF&#x2F;MANIFEST.MF
+test.class
+com&#x2F;
+com&#x2F;PersonAddress.class
+com&#x2F;PersonAddress.java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ol>
+<p><strong>制作含有jar文件的jar包</strong></p>
+<ol>
+<li>
+<p>编写一个Beer.java类并将其编译成Beer.class, 并生成jar包</p>
+<pre class="line-numbers language-none"><code class="language-none">javac com&#x2F;Beer.java
+jar -cvf Beer.jar com&#x2F;Beer.class<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>test类中调用了Beer类，此时Beer类已经打包，这个时候需要在打jar包时使用 -cp 参数，将Beer.jar包引入<br>
+<code>javac -cp Beer.jar test.java</code><br>
+这里的 -cp 表示 -classpath, 指的是把Beer.jar加入classpath路径下</p>
+</li>
+<li>
+<p>把生成的test.class打成jar包</p>
+<pre class="line-numbers language-none"><code class="language-none">jar -cvfm test.jar META-INF\MANIFEST.MF test.class Beer.jar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这里的MANIFEST.MF与之前大致相同，但由于引入了jar包，需要在MENIFEST.MF文件中配置一个新属性，路径指向所需要的所有jar包，如图：</p>
+<pre class="line-numbers language-none"><code class="language-none">1 Manifest-Version: 1.0
+2 Created-By: java11
+3 Main-Class: test
+4 Class-Path: Beer.jar
+5 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>注意：文件末尾要有空白行</strong></p>
+</li>
+<li>
+<p>最后运行jar包<br>
+<code>java -jar test.jar</code><br>
+<img src="https://img14.360buyimg.com/ddimg/jfs/t1/197863/33/15302/26523/617be8a7E9119f8d2/88690bf3f06fa99f.png" alt="image.png"></p>
+</li>
+</ol>
+<h4 id="jar常见命令">jar常见命令</h4>
+<ul>
+<li><code>jar cf test.jar test</code>  不显示压缩过程将当前路径下的test路径下的全部内容生成一个test.jar文件，如果已经存在则被覆盖。</li>
+<li><code>jar cvf test.jar test</code> 显示压缩过程；</li>
+<li><code>jar cvfM test.jar test</code> 不生成清单文件；</li>
+<li><code>jar cvfm test.jar manifest.mf test</code> 自定义清单文件信息，m指定读取用户清单信息。清单文件是普通文本文件。</li>
+<li><code>jar cvfm test.jar a.txt test</code> 将清单文件中的key-value对提取到META-INF/MANIFEST.MF文件中。</li>
+<li><code>jar tf test.jar</code> 查看jar包内容；</li>
+<li><code>jar tf test.jar &gt; a.txt:</code> 如果jar包中的文件路径和文件非常多，用上一个命令就无法查看所有，所以用重定向将显示结果保存到文件中。</li>
+<li><code>jar tvf test.jar:</code> 查看详细内容；</li>
+<li><code>jar xf test.jar</code> 解压，将jar文件解压到当前目录下；</li>
+<li><code>jar xvf test.jar</code> 解压，显示解压过程的信息；</li>
+<li><code>jar uf test.jar Hello.class:</code> 更新test.jar中的Hello.jar文件，如果存在则覆盖，否则添加；</li>
+<li><code>jar uvf test.jar Hello.class：</code> 更新时显示详细信息；</li>
+</ul>
+<h2 id="小结">小结</h2>
+<ol>
+<li>jar包能将所需要的类封装，处理包含多个类的程序时十分方便。</li>
+<li>当类中声明所在的package时，其他类调用该类只需import对应文件夹下的类名即可</li>
+<li>jar包会自动生成一个MANIFEST.MF文件，也可以通过自定义生成，在自定义的清单文件中，需要声明主类和该类所需要的jar包。</li>
+<li>实验过程中发现，当所写的类声明了package后，不能直接进入package类中对该类进行编译，而是需要退到上级目录，才能对该类进行编译。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>jar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/11/03/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start">Quick Start</h2>
+<h3 id="Create-a-new-post">Create a new post</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server">Run server</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files">Generate static files</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>java环境配置</title>
     <url>/2021/11/09/java%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h3 id="java环境配置">java环境配置</h3>
@@ -1589,53 +1589,6 @@ JDK版本：java11, jdk17</p>
       </tags>
   </entry>
   <entry>
-    <title>搭建博客遇到的问题</title>
-    <url>/2021/11/17/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="Hexo-Next主题中文锚点失效">Hexo Next主题中文锚点失效</h2>
-<h4 id="博客搭建环境：">博客搭建环境：</h4>
-<ul>
-<li>Window10</li>
-<li>VScode</li>
-<li>Hexo</li>
-</ul>
-<h4 id="问题描述">问题描述</h4>
-<p>markdown瞄点无法通过点击直接跳转。<br>
-<img src="https://i.bmp.ovh/imgs/2021/11/f680ea639a6ec533.png" alt=""></p>
-<p>点击 F12 进入开发者模式。<br>
-发现报错信息<br>
-<img src="https://i.bmp.ovh/imgs/2021/11/2c0308ca5e4726ce.png" alt=""><br>
-原因是 Hexo解析UTF8时出现问题。</p>
-<h4 id="解决方案">解决方案</h4>
-<p>在next文件夹下，寻找 source/js/src/post-detail.js<br>
-找到</p>
-<pre class="line-numbers language-none"><code class="language-none">var targetSelector &#x3D; NexT.utils.escapeSelector(this.getAttribute(&#39;href&#39;));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>在后面加上</p>
-<pre class="line-numbers language-none"><code class="language-none">targetSelector &#x3D; decodeURI(this.getAttribute(&#39;href&#39;))
-    var offset &#x3D; $(targetSelector).offset().top;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>算法专栏</title>
-    <url>/2021/11/16/%E7%AE%97%E6%B3%95%E4%B8%93%E6%A0%8F/</url>
-    <content><![CDATA[<h1>CodeForce</h1>
-<ul>
-<li>101.Domino(多米诺骨牌) <a href="https://codeforces.com/problemsets/acmsguru/problem/99999/101">题目链接</a> <a href="../Domino">题解</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据库基本知识</title>
     <url>/2021/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9A/</url>
     <content><![CDATA[<h2 id="数据库：">数据库：</h2>
@@ -1706,6 +1659,53 @@ select 字段名 from 表名 order by 字段名 desc;表示降序（asc为升序
       </categories>
       <tags>
         <tag>数据库(增删查改)</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法专栏</title>
+    <url>/2021/11/16/%E7%AE%97%E6%B3%95%E4%B8%93%E6%A0%8F/</url>
+    <content><![CDATA[<h1>CodeForce</h1>
+<ul>
+<li>101.Domino(多米诺骨牌) <a href="https://codeforces.com/problemsets/acmsguru/problem/99999/101">题目链接</a> <a href="../Domino">题解</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>搭建博客遇到的问题</title>
+    <url>/2021/11/17/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="Hexo-Next主题中文锚点失效">Hexo Next主题中文锚点失效</h2>
+<h4 id="博客搭建环境：">博客搭建环境：</h4>
+<ul>
+<li>Window10</li>
+<li>VScode</li>
+<li>Hexo</li>
+</ul>
+<h4 id="问题描述">问题描述</h4>
+<p>markdown瞄点无法通过点击直接跳转。<br>
+<img src="https://i.bmp.ovh/imgs/2021/11/f680ea639a6ec533.png" alt=""></p>
+<p>点击 F12 进入开发者模式。<br>
+发现报错信息<br>
+<img src="https://i.bmp.ovh/imgs/2021/11/2c0308ca5e4726ce.png" alt=""><br>
+原因是 Hexo解析UTF8时出现问题。</p>
+<h4 id="解决方案">解决方案</h4>
+<p>在next文件夹下，寻找 source/js/src/post-detail.js<br>
+找到</p>
+<pre class="line-numbers language-none"><code class="language-none">var targetSelector &#x3D; NexT.utils.escapeSelector(this.getAttribute(&#39;href&#39;));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>在后面加上</p>
+<pre class="line-numbers language-none"><code class="language-none">targetSelector &#x3D; decodeURI(this.getAttribute(&#39;href&#39;))
+    var offset &#x3D; $(targetSelector).offset().top;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>博客搭建</tag>
       </tags>
   </entry>
 </search>
