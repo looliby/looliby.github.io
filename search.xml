@@ -1,334 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>jar包的使用</title>
-    <url>/2021/11/09/Jar%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1>Jar的使用</h1>
-<h2 id="中文摘要">中文摘要</h2>
-<p><strong>什么是jar包？</strong></p>
-<p>JAR文件的全称是Java Archive File，意思是Java档案文件。是一种压缩文件，与常见的ZIP压缩文件兼容。两者最大的区别是在JAR文件中默认包含一个名为META-INF/MANIFEST.MF的清单文件，这个文件是生成JAR文件时由系统自动创建的。</p>
-<p><strong>使用jar包的好处</strong></p>
-<ul>
-<li>安全，可以对其进行数字签名，只让能够识别数字签名的用户使用里面的东西。</li>
-<li>加快下载速度；</li>
-<li>压缩，使文件变小，与ZIP压缩机制完全相同。</li>
-<li>包封装。能够让JAR包里面的文件依赖于统一版本的类文件。</li>
-<li>可移植性，能够在各种平台上直接使用。</li>
-<li>把一个JAR文件添加到系统的classpath环境变量之后，java通常会把这个JAR文件当做一个路径来处理。通常使用jar命令来压缩，</li>
-<li>以把一个或多个路径全部压缩成一个JAR文件。</li>
-</ul>
-<p><strong>什么情况下使用jar包？</strong></p>
-<p>当开发一个应用程序后这个应用程序包含了很多类，如果需要把这个程序提供给别人使用，通常会将这些类文件打包成一个JAR文件，把这个文件提供给别人使用。只要在别人系统的CLASSPATH环境变量中添加这个文件，则java虚拟机就可以自动在内存中解压这个jar包。</p>
-<h2 id="前言">前言</h2>
-<h3 id="目的">目的</h3>
-<ol>
-<li>学会打包java程序，将编译后的java文件打包成jar。</li>
-<li>加深对java中包的理解。</li>
-</ol>
-<h3 id="内容概述">内容概述</h3>
-<ol>
-<li>将java源文件编译后，使用<code>jar</code>命令后打包成jar程序。</li>
-<li>通过命令行运行jar程序。</li>
-</ol>
-<h2 id="软件环境">软件环境</h2>
-<ul>
-<li>操作系统： Window10</li>
-<li>JDK版本：   java11</li>
-</ul>
-<h2 id="内容">内容</h2>
-<p><strong>打包有目录的java程序</strong></p>
-<ol>
-<li>新建一个 .java 文件, 如图：创建了test.java文件(主类)，其中包含com文件夹下的PersonAddress类<br>
-<img src="https://img10.360buyimg.com/ddimg/jfs/t1/223004/1/480/25468/617bb5cbEcf12ca21/92b9ef81857a3921.png" alt="image.png"></li>
-</ol>
-<p><img src="https://img12.360buyimg.com/ddimg/jfs/t1/137587/21/23337/27767/617bb60aE3600b3ca/8af1d2e7c72997b5.png" alt="image.png"></p>
-<ol start="2">
-<li>
-<p>通过命令行的方式编译文件。<strong>注意，需要先编译得到.class文件才能进行打包</strong><br>
-输入命令<code>javac test.java</code><br>
-需要预先配置好[java环境](<a href="https://gitee.com/looliby/home-work/blob/master/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/java%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.md">实验报告/java环境配置.md·looliby/HomeWork-码云-开源中国 (gitee.com)</a>)<br>
-编译完成后，可以看到文件夹中生成了test.class文件。</p>
-</li>
-<li>
-<p>打包java程序。<br>
-这个时候我们需要先准备MEFINEST.MF文件，该文件用于描述Jar包的信息，此处只要描述Main-Class即可</p>
-<pre class="line-numbers language-none"><code class="language-none">1 Manifest-Version: 1.0
-2 Created-By: java11
-3 Main-Class: test
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<pre><code>事先准备好上述的MENIFEST.MF文件，并存放在META-INF文件夹下，此时打jar包的命令如下
-</code></pre>
-<p><code>jar -cvfm test.jar META-INF\MENIFEST.MF test.class com</code></p>
-<ul>
-<li>
-<p>test.jar是打包后的程序名</p>
-</li>
-<li>
-<p>-cvfm表示自定义清单文件</p>
-</li>
-<li>
-<p>com表示打包com文件夹下的所有程序<br>
-运行过程如下：</p>
-<p><img src="https://img14.360buyimg.com/ddimg/jfs/t1/196852/2/15071/28647/617be2f1E49cb182d/3236cfe927272f94.png" alt="image.png"></p>
-</li>
-</ul>
-</li>
-<li>
-<p>运行打包后的jar<br>
-<code>java -jar test.jar</code><br>
-运行结果如下：<br>
-<img src="https://img10.360buyimg.com/ddimg/jfs/t1/210370/17/7264/31644/617be31eE606591db/97baf3a738d121d4.png" alt="image.png"></p>
-</li>
-<li>
-<p>使用<code>jar -tf test.jar</code>可以查看jar包中包含文件，样例中包含文件如下</p>
-<pre class="line-numbers language-none"><code class="language-none">META-INF&#x2F;
-META-INF&#x2F;MANIFEST.MF
-test.class
-com&#x2F;
-com&#x2F;PersonAddress.class
-com&#x2F;PersonAddress.java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-</ol>
-<p><strong>制作含有jar文件的jar包</strong></p>
-<ol>
-<li>
-<p>编写一个Beer.java类并将其编译成Beer.class, 并生成jar包</p>
-<pre class="line-numbers language-none"><code class="language-none">javac com&#x2F;Beer.java
-jar -cvf Beer.jar com&#x2F;Beer.class<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>test类中调用了Beer类，此时Beer类已经打包，这个时候需要在打jar包时使用 -cp 参数，将Beer.jar包引入<br>
-<code>javac -cp Beer.jar test.java</code><br>
-这里的 -cp 表示 -classpath, 指的是把Beer.jar加入classpath路径下</p>
-</li>
-<li>
-<p>把生成的test.class打成jar包</p>
-<pre class="line-numbers language-none"><code class="language-none">jar -cvfm test.jar META-INF\MANIFEST.MF test.class Beer.jar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这里的MANIFEST.MF与之前大致相同，但由于引入了jar包，需要在MENIFEST.MF文件中配置一个新属性，路径指向所需要的所有jar包，如图：</p>
-<pre class="line-numbers language-none"><code class="language-none">1 Manifest-Version: 1.0
-2 Created-By: java11
-3 Main-Class: test
-4 Class-Path: Beer.jar
-5 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>注意：文件末尾要有空白行</strong></p>
-</li>
-<li>
-<p>最后运行jar包<br>
-<code>java -jar test.jar</code><br>
-<img src="https://img14.360buyimg.com/ddimg/jfs/t1/197863/33/15302/26523/617be8a7E9119f8d2/88690bf3f06fa99f.png" alt="image.png"></p>
-</li>
-</ol>
-<h4 id="jar常见命令">jar常见命令</h4>
-<ul>
-<li><code>jar cf test.jar test</code>  不显示压缩过程将当前路径下的test路径下的全部内容生成一个test.jar文件，如果已经存在则被覆盖。</li>
-<li><code>jar cvf test.jar test</code> 显示压缩过程；</li>
-<li><code>jar cvfM test.jar test</code> 不生成清单文件；</li>
-<li><code>jar cvfm test.jar manifest.mf test</code> 自定义清单文件信息，m指定读取用户清单信息。清单文件是普通文本文件。</li>
-<li><code>jar cvfm test.jar a.txt test</code> 将清单文件中的key-value对提取到META-INF/MANIFEST.MF文件中。</li>
-<li><code>jar tf test.jar</code> 查看jar包内容；</li>
-<li><code>jar tf test.jar &gt; a.txt:</code> 如果jar包中的文件路径和文件非常多，用上一个命令就无法查看所有，所以用重定向将显示结果保存到文件中。</li>
-<li><code>jar tvf test.jar:</code> 查看详细内容；</li>
-<li><code>jar xf test.jar</code> 解压，将jar文件解压到当前目录下；</li>
-<li><code>jar xvf test.jar</code> 解压，显示解压过程的信息；</li>
-<li><code>jar uf test.jar Hello.class:</code> 更新test.jar中的Hello.jar文件，如果存在则覆盖，否则添加；</li>
-<li><code>jar uvf test.jar Hello.class：</code> 更新时显示详细信息；</li>
-</ul>
-<h2 id="小结">小结</h2>
-<ol>
-<li>jar包能将所需要的类封装，处理包含多个类的程序时十分方便。</li>
-<li>当类中声明所在的package时，其他类调用该类只需import对应文件夹下的类名即可</li>
-<li>jar包会自动生成一个MANIFEST.MF文件，也可以通过自定义生成，在自定义的清单文件中，需要声明主类和该类所需要的jar包。</li>
-<li>实验过程中发现，当所写的类声明了package后，不能直接进入package类中对该类进行编译，而是需要退到上级目录，才能对该类进行编译。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>jar</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Domino</title>
-    <url>/2021/11/16/Domino/</url>
-    <content><![CDATA[<blockquote>
-<p>CodeForces 第101题。</p>
-</blockquote>
-<p><strong>原题：</strong></p>
-<center><font size = 5><strong>101. Domino</strong></font></center>
-<center>time limit per test: 0.25 sec. </center>
-<center>memory limit per test: 4096 KB </center>
-<p><em>Dominoes – game played with small, rectangular blocks of wood or other material, each identified by a number of dots, or pips, on its face. The blocks usually are called bones, dominoes, or pieces and sometimes men, stones, or even cards.</em></p>
-<p><em>The face of each piece is divided, by a line or ridge, into two squares, each of which is marked as would be a pair of dice…The principle in nearly all modern dominoes games is to match one end of a piece to another that is identically or reciprocally numbered.</em><br>
-<em>ENCYCLOPÆDIA BRITANNICA</em></p>
-<p>Given a set of domino pieces where each side is marked with two digits from 0 to 6. Your task is to arrange pieces in a line such way, that they touch through equal marked sides. It is possible to rotate pieces changing left and right side.</p>
-<p>Input</p>
-<p>The first line of the input contains a single integer <em>N</em> (1 ≤ <em>N</em> ≤ 100) representing the total number of pieces in the domino set. The following <em>N</em> lines describe pieces. Each piece is represented on a separate line in a form of two digits from 0 to 6 separated by a space.</p>
-<p>Output</p>
-<p>Write “No solution” if it is impossible to arrange them described way. If it is possible, write any of way. Pieces must be written in left-to-right order. Every of N lines must contains number of current domino piece and sign “+” or “-“ (first means that you not rotate that piece, and second if you rotate it).</p>
-<p>Sample Input</p>
-<pre class="line-numbers language-none"><code class="language-none">5 
-1 2 
-2 4 
-2 4 
-6 4 
-2 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Sample Output</p>
-<pre class="line-numbers language-none"><code class="language-none">2 -
-5 +
-1 +
-3 +
-4 -<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>题意理解</strong><br>
-有n块多米诺骨牌，每张牌的两面分别是0~6的数字，我们可以重新排列这些骨牌的顺序，并决定是否翻转这些骨牌(翻转用’-'表示)，使得每个骨牌后面的数字与相邻的骨牌前面的数字相同。输出一种可行的方案。<br>
-样例： 4 2   2 1  1 2   2 4   4 6<br>
-<img src="../picture/101%E5%A4%9A%E7%B1%B3%E8%AF%BA%E9%AA%A8%E7%89%8C.png" alt="图解"><br>
-看到题目之后，首先想到判断是否为半欧拉图或欧拉图</p>
-<ul>
-<li><strong>半欧拉图</strong>：在一个图中，如果存在一条通过图中每条边一次且仅一次行遍图中每个顶点的通路且不存在通过图中每条边一次且仅一次行遍图中每个顶点的回路，则称G是半欧拉图。</li>
-<li><strong>欧拉图</strong>：通过图(无向图或有向图)中所有边且每边仅通过一次通路，相应的回路称为欧拉回路。具有欧拉回路的图称为欧拉图。</li>
-</ul>
-<p>判断是否为半欧拉图: 当无向图G是连通的且恰有两个奇度顶点。<br>
-证明过程：</p>
-<blockquote>
-<p>离散数学(第2版) 屈婉玲 P317</p>
-</blockquote>
-<p>题目中多米诺骨牌可视为无向图，因此可直接看是否连通和通过奇度顶点判断</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;判断是否连通
-for (int i &#x3D; 1; i &lt;&#x3D; n; i++)
-		if (!vis[i])
-		&#123;
-			printf(&quot;No solution\n&quot;);
-			return 0;
-		&#125;
-
-&#x2F;&#x2F;计算奇度顶点个数
-bool check()
-&#123;
-	&#x2F;&#x2F;计数
-	int count &#x3D; 0;
-	for (int i &#x3D; 0; i &lt;&#x3D; 6; i++)
-		if (degree[i] &amp; 1)
-		&#123;
-			count++;
-			startPos &#x3D; i;
-		&#125;
-	&#x2F;&#x2F;等于2为半欧拉图, 等于0为欧拉图，其余都不是
-	if (count &#x3D;&#x3D; 1 || count &gt; 2) return false;
-	if (count &#x3D;&#x3D; 2) return true;
-	for (int i &#x3D; 0; i &lt;&#x3D; 6; i++)
-		if (degree[i] &gt; 0)
-		&#123;
-			startPos &#x3D; i;
-			break;
-		&#125;
-	return true;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>经过上一步的判断之后，通过深度优先搜索进行遍历，查看一条边的相邻边，直到走完为止。</p>
-<h4 id="解题思路">解题思路</h4>
-<ol>
-<li>首先创建一个edge结构体，将边信息记录。为方便后面查找相邻边，可添加next属性记录相邻边所在行数，在源代码中用head数组表示。</li>
-<li>判断是否为欧拉图或半欧拉图，不是则直接输出 No solution</li>
-<li>从某个奇度顶点开始，寻找与之相邻的一条边，<strong>当下一条边确定后，再将这条边加入ans数组中</strong>。遍历的同时，使用visit数组记录浏览过的点。</li>
-<li>判断每个点是否都被浏览过。</li>
-</ol>
-<p><strong>源代码</strong></p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;cstdio&gt;
-#include&lt;cstring&gt;
-using namespace std;
-inline int mabs(int x)
-&#123;
-	if (x &gt; 0) return x;
-	else return -x;
-&#125;
-struct T
-&#123;
-	int v, next, id;
-&#125;edge[250];
-int head[250], cnt;
-void add_edge(int u, int v, int id)
-&#123;
-	edge[cnt].v &#x3D; v;
-	edge[cnt].id &#x3D; id;
-	edge[cnt].next &#x3D; head[u];
-	head[u] &#x3D; cnt++;
-&#125;
-int ans[250], tot, degree[250];
-bool vis[205];
-void dfs(int u)
-&#123;
-	for (int i &#x3D; head[u]; i !&#x3D; -1; i &#x3D; edge[i].next)
-	&#123;
-		int v &#x3D; edge[i].v;
-		int id &#x3D; edge[i].id;
-		if (!vis[mabs(id)])
-		&#123;
-			vis[mabs(id)] &#x3D; 1;
-			dfs(v);&#x2F;&#x2F;先dfs下一条边，再保存当前访问的边
-			ans[++tot] &#x3D; id;
-		&#125;
-	&#125;
-&#125;
-int n, a, b, startPos &#x3D; -1;
-bool check()
-&#123;
-	&#x2F;&#x2F;计数
-	int count &#x3D; 0;
-	for (int i &#x3D; 0; i &lt;&#x3D; 6; i++)
-		if (degree[i] &amp; 1)
-		&#123;
-			count++;
-			startPos &#x3D; i;
-		&#125;
-	&#x2F;&#x2F;等于2为半欧拉图, 等于0为欧拉图，其余都不是
-	if (count &#x3D;&#x3D; 1 || count &gt; 2) return false;
-	if (count &#x3D;&#x3D; 2) return true;
-	for (int i &#x3D; 0; i &lt;&#x3D; 6; i++)
-		if (degree[i] &gt; 0)
-		&#123;
-			startPos &#x3D; i;
-			break;
-		&#125;
-	return true;
-&#125;
-int main()
-&#123;
-	memset(head, -1, sizeof head);
-	scanf(&quot;%d&quot;, &amp;n);
-	for (int i &#x3D; 1; i &lt;&#x3D; n; i++)
-	&#123;
-		scanf(&quot;%d%d&quot;, &amp;a, &amp;b);
-		add_edge(a, b, i);
-		add_edge(b, a, -i);
-		degree[a]++;
-		degree[b]++;
-	&#125;
-
-	if (!check())
-	&#123;
-		printf(&quot;No solution\n&quot;);
-		return 0;
-	&#125;
-
-	dfs(startPos);
-	for (int i &#x3D; 1; i &lt;&#x3D; n; i++)
-		if (!vis[i])
-		&#123;
-			printf(&quot;No solution\n&quot;);
-			return 0;
-		&#125;
-	for (int i &#x3D; tot; i &gt;&#x3D; 1; i--)
-		if (ans[i] &gt; 0)
-			printf(&quot;%d +\n&quot;, ans[i]);
-		else
-			printf(&quot;%d -\n&quot;, -ans[i]);
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-]]></content>
-      <tags>
-        <tag>图论</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JavaFx总结</title>
     <url>/2021/11/15/JavaFx%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h2 id="一、题目">一、题目</h2>
@@ -1217,6 +889,334 @@ Demonstration of event handling within the ButtonDemo2 class.
       </tags>
   </entry>
   <entry>
+    <title>Domino</title>
+    <url>/2021/11/16/Domino/</url>
+    <content><![CDATA[<blockquote>
+<p>CodeForces 第101题。</p>
+</blockquote>
+<p><strong>原题：</strong></p>
+<center><font size = 5><strong>101. Domino</strong></font></center>
+<center>time limit per test: 0.25 sec. </center>
+<center>memory limit per test: 4096 KB </center>
+<p><em>Dominoes – game played with small, rectangular blocks of wood or other material, each identified by a number of dots, or pips, on its face. The blocks usually are called bones, dominoes, or pieces and sometimes men, stones, or even cards.</em></p>
+<p><em>The face of each piece is divided, by a line or ridge, into two squares, each of which is marked as would be a pair of dice…The principle in nearly all modern dominoes games is to match one end of a piece to another that is identically or reciprocally numbered.</em><br>
+<em>ENCYCLOPÆDIA BRITANNICA</em></p>
+<p>Given a set of domino pieces where each side is marked with two digits from 0 to 6. Your task is to arrange pieces in a line such way, that they touch through equal marked sides. It is possible to rotate pieces changing left and right side.</p>
+<p>Input</p>
+<p>The first line of the input contains a single integer <em>N</em> (1 ≤ <em>N</em> ≤ 100) representing the total number of pieces in the domino set. The following <em>N</em> lines describe pieces. Each piece is represented on a separate line in a form of two digits from 0 to 6 separated by a space.</p>
+<p>Output</p>
+<p>Write “No solution” if it is impossible to arrange them described way. If it is possible, write any of way. Pieces must be written in left-to-right order. Every of N lines must contains number of current domino piece and sign “+” or “-“ (first means that you not rotate that piece, and second if you rotate it).</p>
+<p>Sample Input</p>
+<pre class="line-numbers language-none"><code class="language-none">5 
+1 2 
+2 4 
+2 4 
+6 4 
+2 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Sample Output</p>
+<pre class="line-numbers language-none"><code class="language-none">2 -
+5 +
+1 +
+3 +
+4 -<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>题意理解</strong><br>
+有n块多米诺骨牌，每张牌的两面分别是0~6的数字，我们可以重新排列这些骨牌的顺序，并决定是否翻转这些骨牌(翻转用’-'表示)，使得每个骨牌后面的数字与相邻的骨牌前面的数字相同。输出一种可行的方案。<br>
+样例： 4 2   2 1  1 2   2 4   4 6<br>
+<img src="../picture/101%E5%A4%9A%E7%B1%B3%E8%AF%BA%E9%AA%A8%E7%89%8C.png" alt="图解"><br>
+看到题目之后，首先想到判断是否为半欧拉图或欧拉图</p>
+<ul>
+<li><strong>半欧拉图</strong>：在一个图中，如果存在一条通过图中每条边一次且仅一次行遍图中每个顶点的通路且不存在通过图中每条边一次且仅一次行遍图中每个顶点的回路，则称G是半欧拉图。</li>
+<li><strong>欧拉图</strong>：通过图(无向图或有向图)中所有边且每边仅通过一次通路，相应的回路称为欧拉回路。具有欧拉回路的图称为欧拉图。</li>
+</ul>
+<p>判断是否为半欧拉图: 当无向图G是连通的且恰有两个奇度顶点。<br>
+证明过程：</p>
+<blockquote>
+<p>离散数学(第2版) 屈婉玲 P317</p>
+</blockquote>
+<p>题目中多米诺骨牌可视为无向图，因此可直接看是否连通和通过奇度顶点判断</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;判断是否连通
+for (int i &#x3D; 1; i &lt;&#x3D; n; i++)
+		if (!vis[i])
+		&#123;
+			printf(&quot;No solution\n&quot;);
+			return 0;
+		&#125;
+
+&#x2F;&#x2F;计算奇度顶点个数
+bool check()
+&#123;
+	&#x2F;&#x2F;计数
+	int count &#x3D; 0;
+	for (int i &#x3D; 0; i &lt;&#x3D; 6; i++)
+		if (degree[i] &amp; 1)
+		&#123;
+			count++;
+			startPos &#x3D; i;
+		&#125;
+	&#x2F;&#x2F;等于2为半欧拉图, 等于0为欧拉图，其余都不是
+	if (count &#x3D;&#x3D; 1 || count &gt; 2) return false;
+	if (count &#x3D;&#x3D; 2) return true;
+	for (int i &#x3D; 0; i &lt;&#x3D; 6; i++)
+		if (degree[i] &gt; 0)
+		&#123;
+			startPos &#x3D; i;
+			break;
+		&#125;
+	return true;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>经过上一步的判断之后，通过深度优先搜索进行遍历，查看一条边的相邻边，直到走完为止。</p>
+<h4 id="解题思路">解题思路</h4>
+<ol>
+<li>首先创建一个edge结构体，将边信息记录。为方便后面查找相邻边，可添加next属性记录相邻边所在行数，在源代码中用head数组表示。</li>
+<li>判断是否为欧拉图或半欧拉图，不是则直接输出 No solution</li>
+<li>从某个奇度顶点开始，寻找与之相邻的一条边，<strong>当下一条边确定后，再将这条边加入ans数组中</strong>。遍历的同时，使用visit数组记录浏览过的点。</li>
+<li>判断每个点是否都被浏览过。</li>
+</ol>
+<p><strong>源代码</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+using namespace std;
+inline int mabs(int x)
+&#123;
+	if (x &gt; 0) return x;
+	else return -x;
+&#125;
+struct T
+&#123;
+	int v, next, id;
+&#125;edge[250];
+int head[250], cnt;
+void add_edge(int u, int v, int id)
+&#123;
+	edge[cnt].v &#x3D; v;
+	edge[cnt].id &#x3D; id;
+	edge[cnt].next &#x3D; head[u];
+	head[u] &#x3D; cnt++;
+&#125;
+int ans[250], tot, degree[250];
+bool vis[205];
+void dfs(int u)
+&#123;
+	for (int i &#x3D; head[u]; i !&#x3D; -1; i &#x3D; edge[i].next)
+	&#123;
+		int v &#x3D; edge[i].v;
+		int id &#x3D; edge[i].id;
+		if (!vis[mabs(id)])
+		&#123;
+			vis[mabs(id)] &#x3D; 1;
+			dfs(v);&#x2F;&#x2F;先dfs下一条边，再保存当前访问的边
+			ans[++tot] &#x3D; id;
+		&#125;
+	&#125;
+&#125;
+int n, a, b, startPos &#x3D; -1;
+bool check()
+&#123;
+	&#x2F;&#x2F;计数
+	int count &#x3D; 0;
+	for (int i &#x3D; 0; i &lt;&#x3D; 6; i++)
+		if (degree[i] &amp; 1)
+		&#123;
+			count++;
+			startPos &#x3D; i;
+		&#125;
+	&#x2F;&#x2F;等于2为半欧拉图, 等于0为欧拉图，其余都不是
+	if (count &#x3D;&#x3D; 1 || count &gt; 2) return false;
+	if (count &#x3D;&#x3D; 2) return true;
+	for (int i &#x3D; 0; i &lt;&#x3D; 6; i++)
+		if (degree[i] &gt; 0)
+		&#123;
+			startPos &#x3D; i;
+			break;
+		&#125;
+	return true;
+&#125;
+int main()
+&#123;
+	memset(head, -1, sizeof head);
+	scanf(&quot;%d&quot;, &amp;n);
+	for (int i &#x3D; 1; i &lt;&#x3D; n; i++)
+	&#123;
+		scanf(&quot;%d%d&quot;, &amp;a, &amp;b);
+		add_edge(a, b, i);
+		add_edge(b, a, -i);
+		degree[a]++;
+		degree[b]++;
+	&#125;
+
+	if (!check())
+	&#123;
+		printf(&quot;No solution\n&quot;);
+		return 0;
+	&#125;
+
+	dfs(startPos);
+	for (int i &#x3D; 1; i &lt;&#x3D; n; i++)
+		if (!vis[i])
+		&#123;
+			printf(&quot;No solution\n&quot;);
+			return 0;
+		&#125;
+	for (int i &#x3D; tot; i &gt;&#x3D; 1; i--)
+		if (ans[i] &gt; 0)
+			printf(&quot;%d +\n&quot;, ans[i]);
+		else
+			printf(&quot;%d -\n&quot;, -ans[i]);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+]]></content>
+      <tags>
+        <tag>图论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jar包的使用</title>
+    <url>/2021/11/09/Jar%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1>Jar的使用</h1>
+<h2 id="中文摘要">中文摘要</h2>
+<p><strong>什么是jar包？</strong></p>
+<p>JAR文件的全称是Java Archive File，意思是Java档案文件。是一种压缩文件，与常见的ZIP压缩文件兼容。两者最大的区别是在JAR文件中默认包含一个名为META-INF/MANIFEST.MF的清单文件，这个文件是生成JAR文件时由系统自动创建的。</p>
+<p><strong>使用jar包的好处</strong></p>
+<ul>
+<li>安全，可以对其进行数字签名，只让能够识别数字签名的用户使用里面的东西。</li>
+<li>加快下载速度；</li>
+<li>压缩，使文件变小，与ZIP压缩机制完全相同。</li>
+<li>包封装。能够让JAR包里面的文件依赖于统一版本的类文件。</li>
+<li>可移植性，能够在各种平台上直接使用。</li>
+<li>把一个JAR文件添加到系统的classpath环境变量之后，java通常会把这个JAR文件当做一个路径来处理。通常使用jar命令来压缩，</li>
+<li>以把一个或多个路径全部压缩成一个JAR文件。</li>
+</ul>
+<p><strong>什么情况下使用jar包？</strong></p>
+<p>当开发一个应用程序后这个应用程序包含了很多类，如果需要把这个程序提供给别人使用，通常会将这些类文件打包成一个JAR文件，把这个文件提供给别人使用。只要在别人系统的CLASSPATH环境变量中添加这个文件，则java虚拟机就可以自动在内存中解压这个jar包。</p>
+<h2 id="前言">前言</h2>
+<h3 id="目的">目的</h3>
+<ol>
+<li>学会打包java程序，将编译后的java文件打包成jar。</li>
+<li>加深对java中包的理解。</li>
+</ol>
+<h3 id="内容概述">内容概述</h3>
+<ol>
+<li>将java源文件编译后，使用<code>jar</code>命令后打包成jar程序。</li>
+<li>通过命令行运行jar程序。</li>
+</ol>
+<h2 id="软件环境">软件环境</h2>
+<ul>
+<li>操作系统： Window10</li>
+<li>JDK版本：   java11</li>
+</ul>
+<h2 id="内容">内容</h2>
+<p><strong>打包有目录的java程序</strong></p>
+<ol>
+<li>新建一个 .java 文件, 如图：创建了test.java文件(主类)，其中包含com文件夹下的PersonAddress类<br>
+<img src="https://img10.360buyimg.com/ddimg/jfs/t1/223004/1/480/25468/617bb5cbEcf12ca21/92b9ef81857a3921.png" alt="image.png"></li>
+</ol>
+<p><img src="https://img12.360buyimg.com/ddimg/jfs/t1/137587/21/23337/27767/617bb60aE3600b3ca/8af1d2e7c72997b5.png" alt="image.png"></p>
+<ol start="2">
+<li>
+<p>通过命令行的方式编译文件。<strong>注意，需要先编译得到.class文件才能进行打包</strong><br>
+输入命令<code>javac test.java</code><br>
+需要预先配置好[java环境](<a href="https://gitee.com/looliby/home-work/blob/master/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/java%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.md">实验报告/java环境配置.md·looliby/HomeWork-码云-开源中国 (gitee.com)</a>)<br>
+编译完成后，可以看到文件夹中生成了test.class文件。</p>
+</li>
+<li>
+<p>打包java程序。<br>
+这个时候我们需要先准备MEFINEST.MF文件，该文件用于描述Jar包的信息，此处只要描述Main-Class即可</p>
+<pre class="line-numbers language-none"><code class="language-none">1 Manifest-Version: 1.0
+2 Created-By: java11
+3 Main-Class: test
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre><code>事先准备好上述的MENIFEST.MF文件，并存放在META-INF文件夹下，此时打jar包的命令如下
+</code></pre>
+<p><code>jar -cvfm test.jar META-INF\MENIFEST.MF test.class com</code></p>
+<ul>
+<li>
+<p>test.jar是打包后的程序名</p>
+</li>
+<li>
+<p>-cvfm表示自定义清单文件</p>
+</li>
+<li>
+<p>com表示打包com文件夹下的所有程序<br>
+运行过程如下：</p>
+<p><img src="https://img14.360buyimg.com/ddimg/jfs/t1/196852/2/15071/28647/617be2f1E49cb182d/3236cfe927272f94.png" alt="image.png"></p>
+</li>
+</ul>
+</li>
+<li>
+<p>运行打包后的jar<br>
+<code>java -jar test.jar</code><br>
+运行结果如下：<br>
+<img src="https://img10.360buyimg.com/ddimg/jfs/t1/210370/17/7264/31644/617be31eE606591db/97baf3a738d121d4.png" alt="image.png"></p>
+</li>
+<li>
+<p>使用<code>jar -tf test.jar</code>可以查看jar包中包含文件，样例中包含文件如下</p>
+<pre class="line-numbers language-none"><code class="language-none">META-INF&#x2F;
+META-INF&#x2F;MANIFEST.MF
+test.class
+com&#x2F;
+com&#x2F;PersonAddress.class
+com&#x2F;PersonAddress.java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ol>
+<p><strong>制作含有jar文件的jar包</strong></p>
+<ol>
+<li>
+<p>编写一个Beer.java类并将其编译成Beer.class, 并生成jar包</p>
+<pre class="line-numbers language-none"><code class="language-none">javac com&#x2F;Beer.java
+jar -cvf Beer.jar com&#x2F;Beer.class<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>test类中调用了Beer类，此时Beer类已经打包，这个时候需要在打jar包时使用 -cp 参数，将Beer.jar包引入<br>
+<code>javac -cp Beer.jar test.java</code><br>
+这里的 -cp 表示 -classpath, 指的是把Beer.jar加入classpath路径下</p>
+</li>
+<li>
+<p>把生成的test.class打成jar包</p>
+<pre class="line-numbers language-none"><code class="language-none">jar -cvfm test.jar META-INF\MANIFEST.MF test.class Beer.jar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这里的MANIFEST.MF与之前大致相同，但由于引入了jar包，需要在MENIFEST.MF文件中配置一个新属性，路径指向所需要的所有jar包，如图：</p>
+<pre class="line-numbers language-none"><code class="language-none">1 Manifest-Version: 1.0
+2 Created-By: java11
+3 Main-Class: test
+4 Class-Path: Beer.jar
+5 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>注意：文件末尾要有空白行</strong></p>
+</li>
+<li>
+<p>最后运行jar包<br>
+<code>java -jar test.jar</code><br>
+<img src="https://img14.360buyimg.com/ddimg/jfs/t1/197863/33/15302/26523/617be8a7E9119f8d2/88690bf3f06fa99f.png" alt="image.png"></p>
+</li>
+</ol>
+<h4 id="jar常见命令">jar常见命令</h4>
+<ul>
+<li><code>jar cf test.jar test</code>  不显示压缩过程将当前路径下的test路径下的全部内容生成一个test.jar文件，如果已经存在则被覆盖。</li>
+<li><code>jar cvf test.jar test</code> 显示压缩过程；</li>
+<li><code>jar cvfM test.jar test</code> 不生成清单文件；</li>
+<li><code>jar cvfm test.jar manifest.mf test</code> 自定义清单文件信息，m指定读取用户清单信息。清单文件是普通文本文件。</li>
+<li><code>jar cvfm test.jar a.txt test</code> 将清单文件中的key-value对提取到META-INF/MANIFEST.MF文件中。</li>
+<li><code>jar tf test.jar</code> 查看jar包内容；</li>
+<li><code>jar tf test.jar &gt; a.txt:</code> 如果jar包中的文件路径和文件非常多，用上一个命令就无法查看所有，所以用重定向将显示结果保存到文件中。</li>
+<li><code>jar tvf test.jar:</code> 查看详细内容；</li>
+<li><code>jar xf test.jar</code> 解压，将jar文件解压到当前目录下；</li>
+<li><code>jar xvf test.jar</code> 解压，显示解压过程的信息；</li>
+<li><code>jar uf test.jar Hello.class:</code> 更新test.jar中的Hello.jar文件，如果存在则覆盖，否则添加；</li>
+<li><code>jar uvf test.jar Hello.class：</code> 更新时显示详细信息；</li>
+</ul>
+<h2 id="小结">小结</h2>
+<ol>
+<li>jar包能将所需要的类封装，处理包含多个类的程序时十分方便。</li>
+<li>当类中声明所在的package时，其他类调用该类只需import对应文件夹下的类名即可</li>
+<li>jar包会自动生成一个MANIFEST.MF文件，也可以通过自定义生成，在自定义的清单文件中，需要声明主类和该类所需要的jar包。</li>
+<li>实验过程中发现，当所写的类声明了package后，不能直接进入package类中对该类进行编译，而是需要退到上级目录，才能对该类进行编译。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>jar</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Markdown基本语法</title>
     <url>/2021/11/03/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<p>Markdown是一种轻量级标记语言，排版语法简洁，让人们更多地关注内容本身而非排版。它使用易读易写的纯文本格式编写文档，可与HTML混编，可导出 HTML、PDF 以及本身的 .md 格式的文件。因简洁、高效、易读、易写，Markdown被大量使用，如Github、Wikipedia等网站，如各大博客平台：WordPress、Drupal、简书等。</p>
@@ -1250,25 +1250,6 @@ Demonstration of event handling within the ButtonDemo2 class.
       <tags>
         <tag>markwown语法</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2021/11/03/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>JavaSE内部类与异常处理</title>
@@ -1500,6 +1481,25 @@ Demonstration of event handling within the ButtonDemo2 class.
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2021/11/03/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start">Quick Start</h2>
+<h3 id="Create-a-new-post">Create a new post</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server">Run server</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files">Generate static files</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>二叉树的中序遍历</title>
     <url>/2021/11/20/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/</url>
     <content><![CDATA[<blockquote>
@@ -1591,132 +1591,6 @@ public:
       </tags>
   </entry>
   <entry>
-    <title>搭建博客遇到的问题</title>
-    <url>/2021/11/17/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="Hexo-Next主题中文锚点失效">Hexo Next主题中文锚点失效</h2>
-<h4 id="博客搭建环境：">博客搭建环境：</h4>
-<ul>
-<li>Window10</li>
-<li>VScode</li>
-<li>Hexo</li>
-</ul>
-<h4 id="问题描述">问题描述</h4>
-<p>markdown瞄点无法通过点击直接跳转。<br>
-<img src="https://i.bmp.ovh/imgs/2021/11/f680ea639a6ec533.png" alt=""></p>
-<p>点击 F12 进入开发者模式。<br>
-发现报错信息<br>
-<img src="https://i.bmp.ovh/imgs/2021/11/2c0308ca5e4726ce.png" alt=""><br>
-原因是 Hexo解析UTF8时出现问题。</p>
-<h4 id="解决方案">解决方案</h4>
-<p>在next文件夹下，寻找 source/js/src/post-detail.js<br>
-找到</p>
-<pre class="line-numbers language-none"><code class="language-none">var targetSelector &#x3D; NexT.utils.escapeSelector(this.getAttribute(&#39;href&#39;));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>在后面加上</p>
-<pre class="line-numbers language-none"><code class="language-none">targetSelector &#x3D; decodeURI(this.getAttribute(&#39;href&#39;))
-    var offset &#x3D; $(targetSelector).offset().top;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据库基本知识</title>
-    <url>/2021/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9A/</url>
-    <content><![CDATA[<h2 id="数据库：">数据库：</h2>
-<p>DataBase,简称DB.<br>
-数据库就是按照一定格式存储数据的一些文件的组合。实际上就是一堆文件，这些文件中存储了具有特定格式的数据。</p>
-<h3 id="数据库管理系统：">数据库管理系统：</h3>
-<p>DataBaseManagement,简称DBMS.<br>
-数据库管理系统是专门用来管理数据库中数据的，数据库管理系统可以对数据库当中的数据进行增删改查。<br>
-常见的数据库管理系统：<br>
-MySQL,Oracle,MS SqlServer,DB2,sybase等…</p>
-<h3 id="SQL-结构化查询语言">SQL:结构化查询语言</h3>
-<p>程序员需要学习SQL语言，编写SQL语句，然后DBMS负责执行SQL语句，最终来完成数据库中数据的增删改查操作。</p>
-<h2 id="mysql基本操作">mysql基本操作:</h2>
-<p>启动和关闭mysql服务:<br>
- net start mysql; 启动<br>
- net stop mysql; 关闭<br>
-退出:<br>
- exit<br>
-登录:<br>
- mysql -uroot -p密码</p>
-<p>查看mysql有哪些数据库<br>
-show databases;</p>
-<p>查看数据库中有哪些表<br>
-show tables;</p>
-<p>查看数据库的版本号<br>
-select version</p>
-<h3 id="SQL语句的分类">SQL语句的分类</h3>
-<p>SQL语句有很多，最好进行分类，容易记住<br>
- DQL:Data Definition Languages(数据查询语言)<br>
-        select…<br>
- DML:Data Manipulation Language(数据查询)<br>
-       insert delete update<br>
- DDL:Data Data Definition Languages(数据操纵语句)<br>
-       create, drop, alter<br>
- TCL:Transaction Control Language(事务控制语句)<br>
-       commit, rollback<br>
-  DCL:Data Control Language(数据控制语言)<br>
-       授权grant, 撤销revoke…</p>
-<h3 id="简单查询">简单查询</h3>
-<p>查看表中所有数据:<br>
-select * from 表名</p>
-<p>不看表名，只看结构:<br>
-desc 表名;</p>
-<p>查询一个字段:<br>
-select 字段名 from 表名;<br>
-多个字段名中间用逗号隔开:select 字段名,字段名 from 表名</p>
-<p>给查询的列起别名:<br>
-select 字段名 as 别名 from 表名;</p>
-<p>条件查询:<br>
-select 字段名 from 表名 where 条件;</p>
-<p>条件<br>
-= 等于<br>
-&lt;&gt;或!= 不等于<br>
-&lt; 小于 &gt; 大于<br>
-between … and …或&gt;= and &lt;= 表示两值之间<br>
-is null为null<br>
-in 表示包含where job in(‘SALE’)<br>
-like 表示模糊查询<br>
-名字以T结尾like ‘%T’<br>
-名字以K开始like ‘K%’<br>
-第三个字母是R的like ‘_R%’</p>
-<h3 id="排序">排序</h3>
-<p>select 字段名 from 表名 order by 字段名;默认是升序<br>
-select 字段名 from 表名 order by 字段名 desc;表示降序（asc为升序)</p>
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>数据库(增删查改)</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>算法专栏</title>
-    <url>/2021/11/16/%E7%AE%97%E6%B3%95%E4%B8%93%E6%A0%8F/</url>
-    <content><![CDATA[<h1>CodeForce</h1>
-<h3 id="欧拉图">欧拉图</h3>
-<ul>
-<li>101.Domino(多米诺骨牌) <a href="https://codeforces.com/problemsets/acmsguru/problem/99999/101">题目链接</a> <a href="../Domino">题解</a>      难度：⭐⭐⭐</li>
-</ul>
-<h1>Leetcode</h1>
-<h3 id="树">树</h3>
-<ul>
-<li>94.二叉树的中序遍历 <a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">题目链接</a> <a href="../../20/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86">题解</a>    难度：⭐</li>
-</ul>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>java环境配置</title>
     <url>/2021/11/09/java%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h3 id="java环境配置">java环境配置</h3>
@@ -1793,6 +1667,132 @@ JDK版本：java11, jdk17</p>
       </categories>
       <tags>
         <tag>java环境配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据库基本知识</title>
+    <url>/2021/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9A/</url>
+    <content><![CDATA[<h2 id="数据库：">数据库：</h2>
+<p>DataBase,简称DB.<br>
+数据库就是按照一定格式存储数据的一些文件的组合。实际上就是一堆文件，这些文件中存储了具有特定格式的数据。</p>
+<h3 id="数据库管理系统：">数据库管理系统：</h3>
+<p>DataBaseManagement,简称DBMS.<br>
+数据库管理系统是专门用来管理数据库中数据的，数据库管理系统可以对数据库当中的数据进行增删改查。<br>
+常见的数据库管理系统：<br>
+MySQL,Oracle,MS SqlServer,DB2,sybase等…</p>
+<h3 id="SQL-结构化查询语言">SQL:结构化查询语言</h3>
+<p>程序员需要学习SQL语言，编写SQL语句，然后DBMS负责执行SQL语句，最终来完成数据库中数据的增删改查操作。</p>
+<h2 id="mysql基本操作">mysql基本操作:</h2>
+<p>启动和关闭mysql服务:<br>
+ net start mysql; 启动<br>
+ net stop mysql; 关闭<br>
+退出:<br>
+ exit<br>
+登录:<br>
+ mysql -uroot -p密码</p>
+<p>查看mysql有哪些数据库<br>
+show databases;</p>
+<p>查看数据库中有哪些表<br>
+show tables;</p>
+<p>查看数据库的版本号<br>
+select version</p>
+<h3 id="SQL语句的分类">SQL语句的分类</h3>
+<p>SQL语句有很多，最好进行分类，容易记住<br>
+ DQL:Data Definition Languages(数据查询语言)<br>
+        select…<br>
+ DML:Data Manipulation Language(数据查询)<br>
+       insert delete update<br>
+ DDL:Data Data Definition Languages(数据操纵语句)<br>
+       create, drop, alter<br>
+ TCL:Transaction Control Language(事务控制语句)<br>
+       commit, rollback<br>
+  DCL:Data Control Language(数据控制语言)<br>
+       授权grant, 撤销revoke…</p>
+<h3 id="简单查询">简单查询</h3>
+<p>查看表中所有数据:<br>
+select * from 表名</p>
+<p>不看表名，只看结构:<br>
+desc 表名;</p>
+<p>查询一个字段:<br>
+select 字段名 from 表名;<br>
+多个字段名中间用逗号隔开:select 字段名,字段名 from 表名</p>
+<p>给查询的列起别名:<br>
+select 字段名 as 别名 from 表名;</p>
+<p>条件查询:<br>
+select 字段名 from 表名 where 条件;</p>
+<p>条件<br>
+= 等于<br>
+&lt;&gt;或!= 不等于<br>
+&lt; 小于 &gt; 大于<br>
+between … and …或&gt;= and &lt;= 表示两值之间<br>
+is null为null<br>
+in 表示包含where job in(‘SALE’)<br>
+like 表示模糊查询<br>
+名字以T结尾like ‘%T’<br>
+名字以K开始like ‘K%’<br>
+第三个字母是R的like ‘_R%’</p>
+<h3 id="排序">排序</h3>
+<p>select 字段名 from 表名 order by 字段名;默认是升序<br>
+select 字段名 from 表名 order by 字段名 desc;表示降序（asc为升序)</p>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>数据库(增删查改)</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>搭建博客遇到的问题</title>
+    <url>/2021/11/17/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="Hexo-Next主题中文锚点失效">Hexo Next主题中文锚点失效</h2>
+<h4 id="博客搭建环境：">博客搭建环境：</h4>
+<ul>
+<li>Window10</li>
+<li>VScode</li>
+<li>Hexo</li>
+</ul>
+<h4 id="问题描述">问题描述</h4>
+<p>markdown瞄点无法通过点击直接跳转。<br>
+<img src="https://i.bmp.ovh/imgs/2021/11/f680ea639a6ec533.png" alt=""></p>
+<p>点击 F12 进入开发者模式。<br>
+发现报错信息<br>
+<img src="https://i.bmp.ovh/imgs/2021/11/2c0308ca5e4726ce.png" alt=""><br>
+原因是 Hexo解析UTF8时出现问题。</p>
+<h4 id="解决方案">解决方案</h4>
+<p>在next文件夹下，寻找 source/js/src/post-detail.js<br>
+找到</p>
+<pre class="line-numbers language-none"><code class="language-none">var targetSelector &#x3D; NexT.utils.escapeSelector(this.getAttribute(&#39;href&#39;));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>在后面加上</p>
+<pre class="line-numbers language-none"><code class="language-none">targetSelector &#x3D; decodeURI(this.getAttribute(&#39;href&#39;))
+    var offset &#x3D; $(targetSelector).offset().top;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法专栏</title>
+    <url>/2021/11/16/%E7%AE%97%E6%B3%95%E4%B8%93%E6%A0%8F/</url>
+    <content><![CDATA[<h1>CodeForce</h1>
+<h3 id="欧拉图">欧拉图</h3>
+<ul>
+<li>101.Domino(多米诺骨牌) <a href="https://codeforces.com/problemsets/acmsguru/problem/99999/101">题目链接</a> <a href="../Domino">题解</a>      难度：⭐⭐⭐</li>
+</ul>
+<h1>Leetcode</h1>
+<h3 id="树">树</h3>
+<ul>
+<li>94.二叉树的中序遍历 <a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">题目链接</a> <a href="../../20/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86">题解</a>    难度：⭐</li>
+</ul>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
       </tags>
   </entry>
 </search>
