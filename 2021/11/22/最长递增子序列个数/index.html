@@ -86,11 +86,13 @@
 <meta property="og:site_name" content="Looliby&#39;s blog">
 <meta property="og:description" content="最长递增子序列个数   难度：⭐⭐⭐ 原题 给定一个未排序的整数数组，找到最长递增子序列的个数。 示例： 输入: [1,3,5,4,7] 输出: 2 解释: 有两个最长递增子序列，分别是 [1, 3, 4, 7] 和[1, 3, 5, 7]。 注意: 给定的数组长度不超过 2000 并且结果一定是32位有符号整数。 解题思路：   通过动态规划求解   可以把问题拆分成两部分，先求出最长递增子">
 <meta property="og:locale">
+<meta property="og:image" content="https://pic.leetcode-cn.com/209a3f4bf94872c1cf03dc103890f3b0be08e25914ac8cbe9171ffd16f2d514e-image.png">
 <meta property="article:published_time" content="2021-11-22T03:39:59.000Z">
-<meta property="article:modified_time" content="2021-11-22T04:17:03.756Z">
+<meta property="article:modified_time" content="2021-11-24T05:31:20.725Z">
 <meta property="article:author" content="looliby">
 <meta property="article:tag" content="线段树">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.leetcode-cn.com/209a3f4bf94872c1cf03dc103890f3b0be08e25914ac8cbe9171ffd16f2d514e-image.png">
 
 
 
@@ -334,7 +336,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  553
+                  1.2k
                 </span>
               
 
@@ -350,7 +352,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  5
                 </span>
               
             </div>
@@ -454,6 +456,96 @@ public:
         return ans;
     &#125;
 &#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>贪心+前缀和+二分查找</p>
+<ul>
+<li>
+<p>同样先将问题看成两部分，第一步先求出最长子序列。可以使用一个$dp[i]$数组，$dp[i]$表示的是长度为 i 的递增子序列中末尾最小的。</p>
+<pre class="line-numbers language-none"><code class="language-none">如：
+	1 3 5 4 7
+其中长度为3的递增子序列有：
+	1 3 5
+	1 3 4
+	1 3 7
+	3 5 7
+此时dp[3] &#x3D; 4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>遍历nums数组，每次从dp数组中找出满足$dp[i] &lt; nums[j] &lt; dp[i + 1]$的 i, 然后更新$dp[i + 1]$的值，保证$dp[i+1]$是长度为 i + 1的递增子序列中末尾值最小的。遍历完nums数组之后，只需看dp数组的长度即可求得最长递增子序列。但为了求最长递增子序列的个数，我们需要将更新的历史信息记录下来，使用二维数组$dp[i][j]$来存储，$dp[i][j]$表示的是第j个以长度为i的递增子序列的末尾的值。</p>
+<pre class="line-numbers language-none"><code class="language-none">如：
+	1 3 5 4 7
+其中长度为2的递增子序列有：
+	1 3 5
+	1 3 4
+	1 3 7
+	3 5 7
+此时
+	dp[1][0] &#x3D; 1
+	dp[2][0] &#x3D; 3
+	dp[3][0] &#x3D; 5
+	dp[3][1] &#x3D; 4
+	dp[4][0] &#x3D; 7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>另一个例子</p>
+<blockquote>
+<p>来自<a href="(https://leetcode-cn.com/problems/number-of-longest-increasing-subsequence/solution/yi-bu-yi-bu-tui-dao-chu-zui-you-jie-fa-2-zui-chang/)">leecode题解区</a></p>
+<p><img src="https://pic.leetcode-cn.com/209a3f4bf94872c1cf03dc103890f3b0be08e25914ac8cbe9171ffd16f2d514e-image.png" alt=""></p>
+</blockquote>
+</li>
+<li>
+<p>使用cnt数组来储存最长递增子序列个数。其中$cnt[i][j]$记录了以$dp[i][j]$结尾的最长上升子序列个数，为计算$cnt[i][j]$，我们可以将所有满足$dp[i-1][k]&lt;d[i][j]$的$cnt[i-1][k]$累加到$cnt[i][j]$，这样最终答案就是$cnt[maxLen]$的所有元素之和。</p>
+</li>
+<li>
+<p>可以使用前缀和进行优化，让每个$cnt[i][0] = 0$，此时$d[i][j]$对应的最长上述子序列就是$cnt[i-1][-1] - cnt[i-1][k]$，这里的-1表示数组的最后一个元素。由于存进数组中的数都是有序的，可以使用二分查找加快查找效率。</p>
+</li>
+</ul>
+<p><strong>代码</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
+public:
+    int findNumberOfLIS(vector&lt;int&gt;&amp; nums) &#123;
+        vector&lt;vector&lt;int&gt;&gt; dp, cnt;
+        for(int v : nums)
+        &#123;
+            int min &#x3D; 0;
+            int max &#x3D; dp.size();
+            int i, c &#x3D; 1;
+            while(min &lt; max)
+            &#123;
+                i &#x3D; (max + min) &#x2F; 2;
+                if(v &gt; dp[i].back())
+                    min &#x3D; i + 1;
+                else
+                    max &#x3D; i;
+            &#125;
+            i &#x3D; min;
+            if(i &gt; 0)
+            &#123;
+                int k;
+                min &#x3D; 0;
+                max &#x3D; dp[i - 1].size();
+                while(min &lt; max)
+                &#123;
+                    k &#x3D; (max + min) &#x2F; 2;
+                    if(dp[i - 1][k] &lt; v)
+                        max &#x3D; k;
+                    else
+                        min &#x3D; k + 1;
+                &#125;
+                k &#x3D; min;
+                c &#x3D; cnt[i - 1].back() - cnt[i - 1][k];
+            &#125;
+            if(i &#x3D;&#x3D; dp.size())
+            &#123;
+                dp.push_back(&#123;v&#125;);
+                cnt.push_back(&#123;0, c&#125;);
+            &#125;
+            else
+            &#123;
+                dp[i].push_back(v);
+                cnt[i].push_back(cnt[i].back() + c);
+            &#125;
+        &#125;
+        return cnt.back().back();
+    &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ol>
 
